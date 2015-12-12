@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Globals : MonoBehaviour {
 
-	public enum GoodTypeEnum { CORN, WHEAT, BRICK }; //TODO
+	public enum GoodTypeEnum { CORN, OIL, TIMBER, LAST }; //TODO
 
 	public static float musicVolume = 100;
 	public static float sfxVolume = 25;

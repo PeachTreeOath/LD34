@@ -114,6 +114,7 @@ public class Utility : MonoBehaviour {
 		rend.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
 		rend.material.SetInt("_ZWrite", 0);
 		rend.material.renderQueue = 3000;
+		rend.material.shader = Shader.Find("Transparent/Diffuse");
 		return child.gameObject;
 	}
 

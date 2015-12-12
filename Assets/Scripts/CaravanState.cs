@@ -4,7 +4,7 @@ using System.Collections;
 public class CaravanState : MonoBehaviour {
 
 	public Globals.GoodTypeEnum goodType;
-	public float value;
+	public float value = 5;
 	public float multiplier = 0;
 
 	// Use this for initialization
