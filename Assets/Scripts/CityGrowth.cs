@@ -7,19 +7,19 @@ public class CityGrowth : MonoBehaviour
 	public float shakeAmount = 0.1f;
 	public float shakeDecreaseFactor = 1f;
 	public float popTime = 1f;
-	public float tileWidth;
-	public float tileHeight;
 
+	private float tileWidth = 110;
+	private float tileHeight = 62;
 	private int cityLevel = 1;
 	private int tileSize = 1;
-	// 1x1, 3x3, 5x5...
-	private int maxTileSize = 5;
+	private int maxTileSize = 5; // 1x1, 3x3, 5x5...
 	private float originXTilePos;
 	private float originYTilePos;
 	private int[,] tileMap;
 	private float shakeTime;
 	private Vector2 origPos;
 	private GameObject baseTileObj;
+	private float scaleTarget;
 
 	// Use this for initialization
 	void Start ()
@@ -29,7 +29,7 @@ public class CityGrowth : MonoBehaviour
 		tileMap [maxTileSize / 2, maxTileSize / 2] = 1;
 		baseTileObj = Resources.Load ("Prefabs/BaseTile") as GameObject;
 		tileWidth = baseTileObj.GetComponent<SpriteRenderer> ().bounds.size.x;
-		tileHeight = baseTileObj.GetComponent<SpriteRenderer>().bounds.size.y;
+		tileHeight = tileWidth / 2;
 		originXTilePos = transform.position.x - maxTileSize / 2 * tileWidth;
 		originYTilePos = transform.position.y;
 	}
@@ -65,12 +65,14 @@ public class CityGrowth : MonoBehaviour
 					float imgY = originYTilePos - (x * tileHeight / 2) + (y * tileHeight / 2);
 					GameObject newTile = (GameObject)Instantiate (baseTileObj, new Vector2 (imgX, imgY), Quaternion.identity);
 					newTile.transform.parent = this.gameObject.transform;
+					newTile.GetComponent<SpriteRenderer> ().sortingLayerName = "Bldg" + x;
+					newTile.GetComponent<SpriteRenderer> ().sortingOrder = maxTileSize - y;
 					break;
 				}
 			}
 		}
 
-		//shakeTime = 1f;
+	//	shakeTime = 1f;
 	}
 
 }
