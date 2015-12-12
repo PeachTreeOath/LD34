@@ -42,7 +42,7 @@ public class ProductionManagerUI : MonoBehaviour {
 		}
 
 		GameObject textTitle = Instantiate(textFab);
-		textTitle.GetComponent<Text>().text = "Production";
+		textTitle.GetComponent<Text>().text = "Production Rates";
 		textTitle.GetComponent<Text>().raycastTarget = false;
 		textTitle.transform.SetParent(canvas.transform, false);
 
