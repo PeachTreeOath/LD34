@@ -3,14 +3,10 @@ using System.Collections;
 
 public class DragCamera : MonoBehaviour {
 
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
+    public float dragSpeed = 1;
 
     private bool mousedown;
     private Vector3 startDragPos;
-    private Vector3 startCamPos;
 
     // Use this for initialization
     void Start() {
@@ -19,16 +15,6 @@ public class DragCamera : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        ProcessInput();
-    }
-
-    void LateUpdate()
-    {
-        ClampToBounds();
-    }
-
-    void ProcessInput()
-    {
         Vector3 pos = Input.mousePosition;
         if (Input.GetMouseButton(0))
         {
@@ -38,38 +24,22 @@ public class DragCamera : MonoBehaviour {
                 OnMouseDown(pos);
             }
             else
-            {
                 OnDrag(pos);
-            }
         }
         else
-        {
             mousedown = false;
-        }
-    }
-
-    void ClampToBounds()
-    {
-        float halfheight = Camera.main.orthographicSize;
-        float halfwidth = halfheight * Screen.width / Screen.height;
-
-        Vector3 pos = Camera.main.transform.position;
-        pos.x = Mathf.Clamp(pos.x, minX + halfwidth, maxX - halfheight);
-        pos.y = Mathf.Clamp(pos.y, minY + halfheight, maxY - halfheight);
-        Camera.main.transform.position = pos;
     }
 
     void OnMouseDown(Vector3 pos)
     {
-        startDragPos = Camera.main.ScreenToWorldPoint(pos);
-        startCamPos = Camera.main.transform.position;
+        startDragPos = pos;
     }
 
     void OnDrag(Vector3 pos)
     {
-        Vector3 newPos = Camera.main.ScreenToWorldPoint(pos);
-        Vector3 delta = newPos - startDragPos;
+        Vector3 newPos = Camera.main.ScreenToViewportPoint(startDragPos - pos);
+        Vector3 delta = new Vector3(newPos.x * dragSpeed, newPos.y * dragSpeed, 0);
 
-        Camera.main.transform.position = startCamPos + delta;
+        Camera.main.transform.Translate(delta, Space.World);
     }
 }
