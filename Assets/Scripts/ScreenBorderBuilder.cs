@@ -4,32 +4,36 @@ using System.Collections;
 public class ScreenBorderBuilder : MonoBehaviour {
 
 	Camera mainCam;
+	GameObject northWall;
+	GameObject southWall;
+	GameObject westWall;
+	GameObject eastWall;
 
 	// Use this for initialization
 	void Start () {
 		mainCam = GameObject.Find("Main Camera").GetComponent<Camera>();
 
-		GameObject northWall = new GameObject("northWall");
+		northWall = new GameObject("northWall");
 		BoxCollider2D bCol = northWall.AddComponent<BoxCollider2D>();
 		bCol.sharedMaterial = Resources.Load("Materials/BouncyMat") as PhysicsMaterial2D;
 		SetColliderWidth(ref bCol, Screen.width, mainCam);
 		Vector3 dims = GetColliderDims(bCol, mainCam);
 		northWall.transform.position = mainCam.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height + dims.y/2, 10));
 
-		GameObject southWall = new GameObject("southWall");
+		southWall = new GameObject("southWall");
 		bCol = southWall.AddComponent<BoxCollider2D>();
 		bCol.sharedMaterial = Resources.Load("Materials/BouncyMat") as PhysicsMaterial2D;
 		SetColliderWidth(ref bCol, Screen.width, mainCam);
 		southWall.transform.position = mainCam.ScreenToWorldPoint(new Vector3(Screen.width/2, -dims.y/2, 10));
 
-		GameObject westWall = new GameObject("westWall");
+		westWall = new GameObject("westWall");
 		bCol = westWall.AddComponent<BoxCollider2D>();
 		bCol.sharedMaterial = Resources.Load("Materials/BouncyMat") as PhysicsMaterial2D;
-		dims = GetColliderDims(bCol, mainCam);
 		SetColliderHeight(ref bCol, Screen.height, mainCam);
+		dims = GetColliderDims(bCol, mainCam);
 		westWall.transform.position = mainCam.ScreenToWorldPoint(new Vector3(-dims.x/2, Screen.height/2, 10));
 
-		GameObject eastWall = new GameObject("eastWall");
+		eastWall = new GameObject("eastWall");
 		bCol = eastWall.AddComponent<BoxCollider2D>();
 		bCol.sharedMaterial = Resources.Load("Materials/BouncyMat") as PhysicsMaterial2D;
 		SetColliderHeight(ref bCol, Screen.height, mainCam);
@@ -38,7 +42,15 @@ public class ScreenBorderBuilder : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		BoxCollider2D bCol = northWall.GetComponent<BoxCollider2D>();
+		Vector3 dims = GetColliderDims(bCol, mainCam);
+		northWall.transform.position = mainCam.ScreenToWorldPoint(new Vector3(Screen.width/2, Screen.height + dims.y/2, 10));
+		southWall.transform.position = mainCam.ScreenToWorldPoint(new Vector3(Screen.width/2, -dims.y/2, 10));
+
+		bCol = westWall.GetComponent<BoxCollider2D>();
+		dims = GetColliderDims(bCol, mainCam);
+		westWall.transform.position = mainCam.ScreenToWorldPoint(new Vector3(-dims.x/2, Screen.height/2, 10));
+		eastWall.transform.position = mainCam.ScreenToWorldPoint(new Vector3(Screen.width + dims.x/2, Screen.height/2, 10));
 	}
 
 	Vector3 GetColliderDims(BoxCollider2D bCol, Camera cam)
