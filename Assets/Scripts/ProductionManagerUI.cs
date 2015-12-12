@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class ProductionManagerUI : MonoBehaviour {
 
@@ -31,6 +32,7 @@ public class ProductionManagerUI : MonoBehaviour {
 			text.GetComponent<Text>().text = goods[i];
 			text.GetComponent<Text>().raycastTarget = false;
 			slider.transform.SetParent(canvas.transform, false);
+
 			text.transform.SetParent(canvas.transform, false);
 
 			RectTransform sxform = slider.GetComponent<RectTransform>();
@@ -53,10 +55,13 @@ public class ProductionManagerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		bool moved = false;
 		for(int i = 0; i < sliders.Count; i++)
 		{
 			if(Globals.gameState.productionRates[i] != sliders[i].value)
 			{
+				moved = true;
+				Camera.main.GetComponent<DragCamera>().enabled = false;
 				float sum = 0;
 				for(int j = 0; j < sliders.Count; j++)
 				{
@@ -77,6 +82,14 @@ public class ProductionManagerUI : MonoBehaviour {
 						}
 					}
 				}
+			}
+		}
+		if(!moved)
+		{
+			if(!Camera.main.GetComponent<DragCamera>().enabled)
+			{
+				Camera.main.GetComponent<DragCamera>().enabled = true;
+				Camera.main.GetComponent<DragCamera>().OnMouseDown(Input.mousePosition);
 			}
 		}
 	}

@@ -30,7 +30,7 @@ public class DragCamera : MonoBehaviour {
             mousedown = false;
     }
 
-    void OnMouseDown(Vector3 pos)
+    public void OnMouseDown(Vector3 pos)
     {
         startDragPos = pos;
     }
