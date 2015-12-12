@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Utility : MonoBehaviour {
 
-	public static RaycastHit hitInfo;
+	public static RaycastHit2D hitInfo;
 	public static bool hitSomething;
 
-	public static RaycastHit hitInfoHover;
+	public static RaycastHit2D hitInfoHover;
 	public static bool hitHoverEnter;
 	public static bool hitHoverExit;
 	public static bool hitHovering;
@@ -25,31 +25,31 @@ public class Utility : MonoBehaviour {
 		hitSomething = false;
 		if(Input.GetMouseButtonDown(0))
 		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if(Physics.Raycast(ray, out hitInfo))
+			hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+			if(hitInfo.collider != null)
 			{
 				Debug.Log(Time.time + " hit something");
 				hitSomething = true;
 			}
 		}
-
+			
+		hitInfoHover = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+		if(hitInfoHover.collider != null)
 		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if(Physics.Raycast(ray, out hitInfoHover))
+			if(!hitHovering)
 			{
-				if(!hitHovering)
-				{
-					hitHoverEnter = true;
-					hitHovering = true;
-				}
-			}else
-			{
-				if(hitHovering)
-				{
-					hitHoverExit = true;
-				}
-				hitHovering = false;
+				//Debug.Log(Time.time + " hitHoverEnter");
+				hitHoverEnter = true;
+				hitHovering = true;
 			}
+		}else
+		{
+			if(hitHovering)
+			{
+				//Debug.Log(Time.time + " hitHoverExit");
+				hitHoverExit = true;
+			}
+			hitHovering = false;
 		}
 	}
 
@@ -115,6 +115,7 @@ public class Utility : MonoBehaviour {
 		rend.material.SetInt("_ZWrite", 0);
 		rend.material.renderQueue = 3000;
 		rend.material.shader = Shader.Find("Transparent/Diffuse");
+		rend.material.color = Color.white;
 		return child.gameObject;
 	}
 

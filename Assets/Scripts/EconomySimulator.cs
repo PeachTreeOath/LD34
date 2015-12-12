@@ -28,7 +28,6 @@ public class EconomySimulator : MonoBehaviour {
 			string iconName = cities[i].GetComponent<TargetCityScript>().desiredGood.ToString().ToLower();
 			iconName = iconName.Substring(0, 1).ToUpper() + iconName.Substring(1);
 			icon.GetComponent<Renderer>().material.mainTexture = Resources.Load("Textures/Trade Goods/"+iconName) as Texture2D;
-
 			icon.transform.position = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + icon.GetComponent<Renderer>().bounds.extents.y) * 1.15f);
 		}
 	}
@@ -39,7 +38,7 @@ public class EconomySimulator : MonoBehaviour {
 		{
 			if(Time.time - timers[i] > times[i])
 			{
-				times[i] = Time.time;
+				timers[i] = Time.time;
 				times[i] = (Random.Range(minTimer, maxTimer));
 				cities[i].GetComponent<TargetCityScript>().desiredGood = (Globals.GoodTypeEnum)Random.Range(0, (int)Globals.GoodTypeEnum.LAST);
 				string iconName = cities[i].GetComponent<TargetCityScript>().desiredGood.ToString().ToLower();
