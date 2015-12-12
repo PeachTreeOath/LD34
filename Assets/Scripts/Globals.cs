@@ -9,9 +9,11 @@ public class Globals : MonoBehaviour {
 	public static float sfxVolume = 25;
 	public static GameObject bgMusic;
 	public static GameState gameState = null;
+	public static GameObject playerCity;
 
 	void Start()
 	{
+		playerCity = GameObject.FindGameObjectWithTag("Player");
 		if(gameState == null)
 		{
 			gameState = ScriptableObject.CreateInstance<GameState>();

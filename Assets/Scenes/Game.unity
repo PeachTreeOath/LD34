@@ -96,9 +96,10 @@ GameObject:
   - 212: {fileID: 124664709}
   - 114: {fileID: 124664708}
   - 114: {fileID: 124664707}
+  - 61: {fileID: 124664711}
   m_Layer: 0
   m_Name: castle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,6 +170,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!61 &124664711
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124664706}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.04, y: 1.82}
 --- !u!1001 &198407988
 Prefab:
   m_ObjectHideFlags: 0
