@@ -3,6 +3,13 @@ using System.Collections;
 
 public class Utility : MonoBehaviour {
 
+	public static RaycastHit2D hitInfo;
+	public static bool hitSomething;
+
+	public static RaycastHit2D hitInfoHover;
+	public static bool hitHoverEnter;
+	public static bool hitHoverExit;
+	public static bool hitHovering;
 
 	// Use this for initialization
 	void Start () {
@@ -10,9 +17,41 @@ public class Utility : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update() {
-        //hit raycast moved to GlobalInputHandler
-    }
+	void Update()
+	{
+		hitHoverEnter = false;
+		hitHoverExit = false;
+
+		hitSomething = false;
+		if(Input.GetMouseButtonDown(0))
+		{
+			hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+			if(hitInfo.collider != null)
+			{
+				Debug.Log(Time.time + " hit something");
+				hitSomething = true;
+			}
+		}
+			
+		hitInfoHover = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+		if(hitInfoHover.collider != null)
+		{
+			if(!hitHovering)
+			{
+				//Debug.Log(Time.time + " hitHoverEnter");
+				hitHoverEnter = true;
+				hitHovering = true;
+			}
+		}else
+		{
+			if(hitHovering)
+			{
+				//Debug.Log(Time.time + " hitHoverExit");
+				hitHoverExit = true;
+			}
+			hitHovering = false;
+		}
+	}
 
 	void LateUpdate()
 	{
@@ -75,6 +114,8 @@ public class Utility : MonoBehaviour {
 		rend.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
 		rend.material.SetInt("_ZWrite", 0);
 		rend.material.renderQueue = 3000;
+		rend.material.shader = Shader.Find("Transparent/Diffuse");
+		rend.material.color = Color.white;
 		return child.gameObject;
 	}
 
