@@ -8,6 +8,8 @@ public class Slingshot : MonoBehaviour {
     private GameObject arrow; 
 
     public GameObject arrowPrefab;
+    public GameObject caravanPrefab;
+    public float shotSpeed = 20;
 
     // Use this for initialization
     void Start() {
@@ -22,18 +24,20 @@ public class Slingshot : MonoBehaviour {
 
     void onDragEnd(Vector3 mousePos)
     {
+        float angle = getAngle(mousePos);
+        Shoot(angle);
+
         Destroy(arrow);
         arrow = null;
     }
 
     void onDrag(Vector3 mousePos)
     {
-        Vector3 delta = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
-        Vector3 dir = -delta.normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
+        float angle = getAngle(mousePos);
         arrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
+
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -63,6 +67,22 @@ public class Slingshot : MonoBehaviour {
             }
         }
 	}
+
+    private float getAngle(Vector3 mousePos)
+    {
+        Vector3 delta = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
+        Vector3 dir = -delta.normalized;
+        return Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    }
+
+    private void Shoot(float angle)
+    {
+        GameObject caravan = (GameObject)Instantiate(caravanPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        Rigidbody2D rigidBody = caravan.GetComponent<Rigidbody2D>();
+        rigidBody.velocity = new Vector2(Mathf.Cos(angle) * shotSpeed, Mathf.Sin(angle) * shotSpeed);
+
+        Destroy(gameObject);
+    }
 
     private bool hitThis()
     {
