@@ -279,8 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f157afceb47aaae4d9fca2115818ffe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goods:
-  - Corn
+  goods: []
 --- !u!1 &391553431
 GameObject:
   m_ObjectHideFlags: 0
