@@ -17,18 +17,19 @@ public class EconomySimulator : MonoBehaviour {
 		times = new List<float>();
 		icons = new List<GameObject>();
 		cities = GameObject.FindGameObjectsWithTag("City");
+		GameObject goodIconFab = Resources.Load("Prefabs/GoodIcon") as GameObject;
 		for(int i = 0; i < cities.Length; i++)
 		{
 			timers.Add(Time.time);
 			times.Add(Random.Range(minTimer, maxTimer));
 			cities[i].GetComponent<TargetCityScript>().desiredGood = (Globals.GoodTypeEnum)Random.Range(0, (int)Globals.GoodTypeEnum.LAST);
-			GameObject icon = Utility.CreateBillboard();
-			icon.transform.localScale *= .01f;
-			icons.Add(icon);
 			string iconName = cities[i].GetComponent<TargetCityScript>().desiredGood.ToString().ToLower();
 			iconName = iconName.Substring(0, 1).ToUpper() + iconName.Substring(1);
-			icon.GetComponent<Renderer>().material.mainTexture = Resources.Load("Textures/Trade Goods/"+iconName) as Texture2D;
-			icon.transform.position = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + icon.GetComponent<Renderer>().bounds.extents.y) * 1.15f);
+			GameObject icon = Instantiate(goodIconFab);
+			SpriteRenderer rend = icon.GetComponent<SpriteRenderer>();
+			icons.Add(icon);
+			rend.material.mainTexture = Resources.Load("Textures/Trade Goods/"+iconName) as Texture2D;
+			icon.transform.position = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + rend.bounds.extents.y) * 1.15f) + Vector3.back;
 		}
 	}
 	
@@ -43,7 +44,7 @@ public class EconomySimulator : MonoBehaviour {
 				cities[i].GetComponent<TargetCityScript>().desiredGood = (Globals.GoodTypeEnum)Random.Range(0, (int)Globals.GoodTypeEnum.LAST);
 				string iconName = cities[i].GetComponent<TargetCityScript>().desiredGood.ToString().ToLower();
 				iconName = iconName.Substring(0, 1).ToUpper() + iconName.Substring(1);
-				icons[i].GetComponent<Renderer>().material.mainTexture = Resources.Load("Textures/Trade Goods/"+iconName) as Texture2D;
+				icons[i].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/Trade Goods/"+iconName);// .material.mainTexture = Resources.Load("Textures/Trade Goods/"+iconName) as Texture2D;
 			}
 		}
 	}
