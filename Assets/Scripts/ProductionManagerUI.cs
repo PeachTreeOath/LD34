@@ -65,7 +65,6 @@ public class ProductionManagerUI : MonoBehaviour {
 				if(sum > 1)
 				{
 					float delta = (sum - 1)/(sliders.Count - 1);
-					Debug.Log(Time.time + " delta " + delta);
 					for(int j = 0; j < sliders.Count; j++)
 					{
 						if(i != j)
