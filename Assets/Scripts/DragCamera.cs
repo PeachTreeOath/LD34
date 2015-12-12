@@ -27,20 +27,6 @@ public class DragCamera : MonoBehaviour {
         ClampToBounds();
     }
 
-    void OnMouseDown(Vector3 pos)
-    {
-        startDragPos = Camera.main.ScreenToWorldPoint(pos);
-        startCamPos = Camera.main.transform.position;
-    }
-
-    void OnDrag(Vector3 pos)
-    {
-        Vector3 newPos = Camera.main.ScreenToWorldPoint(pos);
-        Vector3 delta = newPos - startDragPos;
-
-        Camera.main.transform.position = startCamPos + delta;
-    }
-
     void ProcessInput()
     {
         Vector3 pos = Input.mousePosition;
@@ -71,5 +57,19 @@ public class DragCamera : MonoBehaviour {
         pos.x = Mathf.Clamp(pos.x, minX + halfwidth, maxX - halfheight);
         pos.y = Mathf.Clamp(pos.y, minY + halfheight, maxY - halfheight);
         Camera.main.transform.position = pos;
+    }
+
+    void OnMouseDown(Vector3 pos)
+    {
+        startDragPos = Camera.main.ScreenToWorldPoint(pos);
+        startCamPos = Camera.main.transform.position;
+    }
+
+    void OnDrag(Vector3 pos)
+    {
+        Vector3 newPos = Camera.main.ScreenToWorldPoint(pos);
+        Vector3 delta = newPos - startDragPos;
+
+        Camera.main.transform.position = startCamPos + delta;
     }
 }
