@@ -212,10 +212,6 @@ Prefab:
       propertyPath: m_Name
       value: person_green
       objectReference: {fileID: 0}
-    - target: {fileID: 467250, guid: 68a890812a3fa4c4c8d9f98e2bf7057a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68a890812a3fa4c4c8d9f98e2bf7057a, type: 2}
   m_IsPrefabParent: 0
