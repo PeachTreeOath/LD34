@@ -41,8 +41,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 0
-  vel: 0.1
-  accel: 0.01
+  vel: 0.05
+  accel: 0.0002
 --- !u!212 &21248374
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -82,17 +82,21 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: vel
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: accel
-      value: 0.01
+      value: 0.0002
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 40454e932ef47ec4cbad10987e8e7f0e,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: accelRate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 167046}

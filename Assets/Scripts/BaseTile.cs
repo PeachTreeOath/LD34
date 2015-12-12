@@ -4,37 +4,55 @@ using System.Collections;
 public class BaseTile : MonoBehaviour {
 
 	public float scale = 0;
-	public float vel = .001f;
-	public float accel = .00002f;
+	public float vel = .05f;
+	public float accel = .0002f;
 
-	private float currAccel;
 	private bool increasing = true;
+	private bool isAnimating = true;
 
 	// Use this for initialization
 	void Start () {
-		currAccel = accel;
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {/*
-		transform.localScale = new Vector3(scale,scale,1);
-		if (scale > 1) {
-			if (increasing) {
-				increasing = !increasing;
-				accel = 
+	void Update () {
+		if (isAnimating) {
+			transform.localScale = new Vector3 (scale, scale, 1);
+			scale += vel * Time.deltaTime;	
+			vel -= accel * Time.deltaTime;
+			if (scale > 1) {
+				if (increasing) {
+					increasing = !increasing;
+				}
+			} else {
+				if (!increasing) {
+					transform.localScale = new Vector3 (1, 1, 1);
+					isAnimating = false;
+				}
 			}
-			currAccel = -accel;
-		} else {
-			if (increasing) {
-				increasing = !increasing;
-			}
-			currAccel = accel;
 		}
-
-		scale += vel;	
-		vel += currAccel;*/
 	}
-
+	/*
+	void FixedUpdate()
+	{
+		if (isAnimating) {
+			transform.localScale = new Vector3 (scale, scale, 1);
+			scale += vel;
+			vel -= accel;
+			if (scale > 1) {
+				if (increasing) {
+					increasing = !increasing;
+				}
+			} else {
+				if (!increasing) {
+					transform.localScale = new Vector3 (1, 1, 1);
+					isAnimating = false;
+				}
+			}
+		}
+	}
+*/
 	public void SpringToLife()
 	{
 
