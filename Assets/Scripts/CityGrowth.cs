@@ -65,6 +65,8 @@ public class CityGrowth : MonoBehaviour
 					float imgY = originYTilePos - (x * tileHeight / 2) + (y * tileHeight / 2);
 					GameObject newTile = (GameObject)Instantiate (baseTileObj, new Vector2 (imgX, imgY), Quaternion.identity);
 					newTile.transform.parent = this.gameObject.transform;
+					newTile.GetComponent<SpriteRenderer> ().sortingLayerName = "Bldg" + x;
+					newTile.GetComponent<SpriteRenderer> ().sortingOrder = maxTileSize - y;
 					break;
 				}
 			}
