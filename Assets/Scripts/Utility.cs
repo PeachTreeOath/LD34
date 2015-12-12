@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Uitlity : MonoBehaviour {
+public class Utility : MonoBehaviour {
 
 	public static RaycastHit hitInfo;
 	public static bool hitSomething;
@@ -157,5 +157,47 @@ public class Uitlity : MonoBehaviour {
 		Vector2 ret = new Vector2(p2.x - p1.x, p2.y - p1.y);
 
 		return ret;
+	}
+
+	public static void SetObjectWidth(ref GameObject go, float tarWidth, Camera cam)
+	{
+		float width = 0;
+		Renderer rend = go.GetComponent<Renderer>();
+		while(width < tarWidth)
+		{
+			go.transform.localScale = new Vector3(go.transform.localScale.x * 1.01f, go.transform.localScale.y, go.transform.localScale.z);
+			float xLeft = go.transform.position.x - rend.bounds.extents.x;
+			float yBottom = go.transform.position.y - rend.bounds.extents.y;
+			float xRight = go.transform.position.x + rend.bounds.extents.x;
+			float yTop = go.transform.position.y + rend.bounds.extents.y;
+
+			Vector3 p1 = new Vector3(xLeft, yBottom, go.transform.position.z);
+			Vector3 p2 = new Vector3(xRight, yTop, go.transform.position.z);
+			p1 = cam.WorldToScreenPoint(p1);
+			p2 = cam.WorldToScreenPoint(p2);
+
+			width = p2.x - p1.x;
+		}
+	}
+
+	public static void SetObjectHeight(ref GameObject go, float tarHeight, Camera cam)
+	{
+		float height = 0;
+		Renderer rend = go.GetComponent<Renderer>();
+		while(height < tarHeight)
+		{
+			go.transform.localScale = new Vector3(go.transform.localScale.x, go.transform.localScale.y * 1.01f, go.transform.localScale.z);
+			float xLeft = go.transform.position.x - rend.bounds.extents.x;
+			float yBottom = go.transform.position.y - rend.bounds.extents.y;
+			float xRight = go.transform.position.x + rend.bounds.extents.x;
+			float yTop = go.transform.position.y + rend.bounds.extents.y;
+
+			Vector3 p1 = new Vector3(xLeft, yBottom, go.transform.position.z);
+			Vector3 p2 = new Vector3(xRight, yTop, go.transform.position.z);
+			p1 = cam.WorldToScreenPoint(p1);
+			p2 = cam.WorldToScreenPoint(p2);
+
+			height = p2.y - p1.y;
+		}
 	}
 }
