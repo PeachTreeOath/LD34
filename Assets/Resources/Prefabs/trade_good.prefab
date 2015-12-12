@@ -13,7 +13,7 @@ GameObject:
   - 58: {fileID: 5894410}
   - 114: {fileID: 11439998}
   m_Layer: 0
-  m_Name: trade_good 1
+  m_Name: trade_good
   m_TagString: Trade Good
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
