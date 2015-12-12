@@ -11,6 +11,7 @@ public class DragCamera : MonoBehaviour {
     // Use this for initialization
     void Start() {
         mousedown = false;
+
     }
 
     // Update is called once per frame

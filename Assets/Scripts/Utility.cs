@@ -3,13 +3,6 @@ using System.Collections;
 
 public class Utility : MonoBehaviour {
 
-	public static RaycastHit hitInfo;
-	public static bool hitSomething;
-
-	public static RaycastHit hitInfoHover;
-	public static bool hitHoverEnter;
-	public static bool hitHoverExit;
-	public static bool hitHovering;
 
 	// Use this for initialization
 	void Start () {
@@ -17,41 +10,9 @@ public class Utility : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update()
-	{
-		hitHoverEnter = false;
-		hitHoverExit = false;
-
-		hitSomething = false;
-		if(Input.GetMouseButtonDown(0))
-		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if(Physics.Raycast(ray, out hitInfo))
-			{
-				Debug.Log(Time.time + " hit something");
-				hitSomething = true;
-			}
-		}
-
-		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if(Physics.Raycast(ray, out hitInfoHover))
-			{
-				if(!hitHovering)
-				{
-					hitHoverEnter = true;
-					hitHovering = true;
-				}
-			}else
-			{
-				if(hitHovering)
-				{
-					hitHoverExit = true;
-				}
-				hitHovering = false;
-			}
-		}
-	}
+	void Update() {
+        //hit raycast moved to GlobalInputHandler
+    }
 
 	void LateUpdate()
 	{
