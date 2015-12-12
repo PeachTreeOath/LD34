@@ -94,13 +94,40 @@ GameObject:
   m_Component:
   - 4: {fileID: 124664710}
   - 212: {fileID: 124664709}
+  - 114: {fileID: 124664708}
+  - 114: {fileID: 124664707}
+  - 61: {fileID: 124664711}
   m_Layer: 0
   m_Name: castle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &124664707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124664706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfb711582d468c44aae710100896230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &124664708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124664706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b4c1c239137504c9d03b8afaea927f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caravanPrefab: {fileID: 173106, guid: d74e41d48a99d3b47948b5aa4864b6ff, type: 2}
+  shotSpeed: 20
 --- !u!212 &124664709
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143,47 +170,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1 &182130920
-GameObject:
+--- !u!61 &124664711
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 182130922}
-  - 114: {fileID: 182130921}
-  m_Layer: 0
-  m_Name: TradeGoodSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &182130921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 182130920}
+  m_GameObject: {fileID: 124664706}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c748965ff97b049b1a5ea04f94288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  spawnDelay: 3
---- !u!4 &182130922
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 182130920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.68, y: -1.78, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 2.04, y: 1.82}
 --- !u!1001 &198407988
 Prefab:
   m_ObjectHideFlags: 0
@@ -348,8 +348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goods:
   - Corn
-  - Wheat
-  - Bricks
+  - Oil
+  - Timber
 --- !u!114 &317070598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,8 +386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minX: -12
   maxX: 12
-  minY: -12
-  maxY: 12
+  minY: -6
+  maxY: 6
 --- !u!114 &317070601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,88 +832,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
---- !u!1 &1552348998
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1552349000}
-  - 114: {fileID: 1552348999}
-  m_Layer: 0
-  m_Name: TradeGoodSpawner (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1552348999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1552348998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c748965ff97b049b1a5ea04f94288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  spawnDelay: 3
---- !u!4 &1552349000
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1552348998}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.88, y: -4.07, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
---- !u!1 &1688428741
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1688428743}
-  - 114: {fileID: 1688428742}
-  m_Layer: 0
-  m_Name: TradeGoodSpawner (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1688428742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1688428741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c748965ff97b049b1a5ea04f94288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  spawnDelay: 3
---- !u!4 &1688428743
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1688428741}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.38, y: -4.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
 --- !u!1 &1898446249
 GameObject:
   m_ObjectHideFlags: 0
