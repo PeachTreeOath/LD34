@@ -43,3 +43,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Bldg1
+    uniqueID: 3101415973
+    locked: 0
+  - name: Bldg2
+    uniqueID: 3507918229
+    locked: 0
+  - name: Bldg3
+    uniqueID: 3487171621
+    locked: 0
+  - name: Bldg4
+    uniqueID: 1704186879
+    locked: 0
+  - name: Bldg5
+    uniqueID: 2037277505
+    locked: 0
