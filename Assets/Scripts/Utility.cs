@@ -186,7 +186,7 @@ public class Utility : MonoBehaviour {
 		Renderer rend = go.GetComponent<Renderer>();
 		while(height < tarHeight)
 		{
-			go.transform.localScale = new Vector3(go.transform.localScale.x, go.transform.localScale.y * 1.01f, go.transform.localScale.z);
+			go.transform.localScale = new Vector3(go.transform.localScale.x, go.transform.localScale.y, go.transform.localScale.z * 1.01f);
 			float xLeft = go.transform.position.x - rend.bounds.extents.x;
 			float yBottom = go.transform.position.y - rend.bounds.extents.y;
 			float xRight = go.transform.position.x + rend.bounds.extents.x;
@@ -198,6 +198,10 @@ public class Utility : MonoBehaviour {
 			p2 = cam.WorldToScreenPoint(p2);
 
 			height = p2.y - p1.y;
+			if(go.transform.localScale.y == Mathf.Infinity)
+			{
+				height  = float.MaxValue;
+			}
 		}
 	}
 }
