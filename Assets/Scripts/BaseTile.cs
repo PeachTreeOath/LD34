@@ -16,7 +16,7 @@ public class BaseTile : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {/*
 		transform.localScale = new Vector3(scale,scale,1);
 		if (scale > 1) {
 			if (increasing) {
@@ -32,7 +32,7 @@ public class BaseTile : MonoBehaviour {
 		}
 
 		scale += vel;	
-		vel += currAccel;
+		vel += currAccel;*/
 	}
 
 	public void SpringToLife()
