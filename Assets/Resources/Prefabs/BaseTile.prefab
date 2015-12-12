@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 498206}
   - 212: {fileID: 21248374}
+  - 114: {fileID: 11463302}
   m_Layer: 0
   m_Name: BaseTile
   m_TagString: Untagged
@@ -28,6 +29,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11463302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0ea77073b50c45b6515341c2911ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 0
+  vel: 0.1
+  accel: 0.01
 --- !u!212 &21248374
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -54,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 23914cb472cd056469a84f9768839681, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40454e932ef47ec4cbad10987e8e7f0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -64,7 +79,20 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: vel
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: accel
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 40454e932ef47ec4cbad10987e8e7f0e,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 167046}
