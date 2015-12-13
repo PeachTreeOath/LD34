@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 0
   value: 5
-  multiplier: 1
+  multiplier: 0
 --- !u!212 &21254982
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -171,6 +171,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: multiplier
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

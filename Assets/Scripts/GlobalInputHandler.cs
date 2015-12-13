@@ -23,7 +23,7 @@ public class GlobalInputHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
@@ -34,12 +34,20 @@ public class GlobalInputHandler : MonoBehaviour {
     //When there is a click and the given game object is the receiver, clickCallback will be called on that gameobject
     //the parameter for the function is mouse location of the initial click, the return value is a boolean: true if the click was handled, false to pass through
     public void registerForClick(GameObject go, Func<Vector3, bool> clickCallback) {
+		if(dragDic.ContainsKey(go.GetInstanceID()))
+		{
+			dragDic.Remove(go.GetInstanceID());
+		}
         clickDic.Add(go.GetInstanceID(), clickCallback);
     }
 
     //When there is a drag and the given game object is the receiver, click[start,,end]Callback will be called on that gameobject
     //the parameter for the function is current mouse location, the return value is a boolean: true if the drag was handled, false to pass through
     public void registerForDrag(GameObject go, Func<Vector3,bool> dragStartCallback,Func<Vector3,bool> dragCallback, Func<Vector3,bool> dragEndCallback ) {
+		if(dragDic.ContainsKey(go.GetInstanceID()))
+		{
+			dragDic.Remove(go.GetInstanceID());
+		}
         dragDic.Add(go.GetInstanceID(), new Func<Vector3,bool>[] {dragStartCallback, dragCallback, dragEndCallback});
     }
 

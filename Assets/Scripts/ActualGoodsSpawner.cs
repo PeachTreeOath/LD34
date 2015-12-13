@@ -38,6 +38,7 @@ public class ActualGoodsSpawner : MonoBehaviour {
 		if(Globals.gameState.productionCounts[(int)goodType] == 1)
 		{
 	        GameObject tradeGood = Instantiate(tradeGoodPrefab, transform.position, Quaternion.identity) as GameObject;
+			DontDestroyOnLoad(tradeGood);
 			BouncyScaler bs = tradeGood.AddComponent<BouncyScaler>();
 			bs.targetScale = 1.4f;
 			bs.epsilon = .01f;

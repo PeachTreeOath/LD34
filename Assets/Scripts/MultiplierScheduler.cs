@@ -75,6 +75,7 @@ public class MultiplierScheduler : MonoBehaviour {
 
 					multObjs[indices[i]].GetComponent<Renderer>().enabled = true;
 					multObjs[indices[i]].GetComponent<Multiplier>().multiplier = multChance[Random.Range(0, multChance.Length)];
+					Debug.Log(Time.time + " spawning mult " + multObjs[indices[i]].GetComponent<Multiplier>().multiplier);
 					multObjs[indices[i]].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/mult"+((int)multObjs[indices[i]].GetComponent<Multiplier>().multiplier));
 
 					lifeTimers[indices[i]] = Time.time;

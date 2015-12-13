@@ -21,6 +21,7 @@ public class CaravanState : MonoBehaviour {
 	{
 		if(col.gameObject.tag.Equals("Multiplier"))
 		{
+			Debug.Log(Time.time + " caravan hit mult " + col.gameObject.GetComponent<Multiplier>().multiplier + " was " + multiplier);
 			multiplier += col.gameObject.GetComponent<Multiplier>().multiplier;
 		}
 	}

@@ -14,9 +14,8 @@ public class Slingshot : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
+		GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
         active = false;
-        GIH.registerForDrag(gameObject, onDragStart, onDrag, onDragEnd);
     }
 
     bool onDragStart(Vector3 mousePos)
@@ -47,6 +46,8 @@ public class Slingshot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
+		GIH.registerForDrag(gameObject, onDragStart, onDrag, onDragEnd);
 	}
 
     private float getAngle(Vector3 mousePos)
