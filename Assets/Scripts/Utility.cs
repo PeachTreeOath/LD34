@@ -18,39 +18,39 @@ public class Utility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update()
-	{
-//		hitHoverEnter = false;
-//		hitHoverExit = false;
+	{/*
+		hitHoverEnter = false;
+		hitHoverExit = false;
 
-//		hitSomething = false;
-//		if(Input.GetMouseButtonDown(0))
-//		{
-//			hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-//			if(hitInfo.collider != null)
-//			{
-//				Debug.Log(Time.time + " hit something");
-//				hitSomething = true;
-//			}
-//		}
-//			
-//		hitInfoHover = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-//		if(hitInfoHover.collider != null)
-//		{
-//			if(!hitHovering)
-//			{
-//				//Debug.Log(Time.time + " hitHoverEnter");
-//				hitHoverEnter = true;
-//				hitHovering = true;
-//			}
-//		}else
-//		{
-//			if(hitHovering)
-//			{
-//				//Debug.Log(Time.time + " hitHoverExit");
-//				hitHoverExit = true;
-//			}
-//			hitHovering = false;
-//		}
+		hitSomething = false;
+		if(Input.GetMouseButtonDown(0))
+		{
+			hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+			if(hitInfo.collider != null)
+			{
+				Debug.Log(Time.time + " hit something");
+				hitSomething = true;
+			}
+		}
+			
+		hitInfoHover = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+		if(hitInfoHover.collider != null)
+		{
+			if(!hitHovering)
+			{
+				//Debug.Log(Time.time + " hitHoverEnter");
+				hitHoverEnter = true;
+				hitHovering = true;
+			}
+		}else
+		{
+			if(hitHovering)
+			{
+				//Debug.Log(Time.time + " hitHoverExit");
+				hitHoverExit = true;
+			}
+			hitHovering = false;
+		}*/
 	}
 
 	void LateUpdate()
