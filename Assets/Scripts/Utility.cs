@@ -80,12 +80,12 @@ public class Utility : MonoBehaviour {
 		MeshRenderer mRenderer = fontObj.GetComponent<MeshRenderer>();
 		mRenderer.material = mat;//font.material;
 		tm.font = font;
-		Shader zTextShader = Shader.Find("Resources/Shaders/zTextShader");
+		/*Shader zTextShader = Shader.Find("Resources/Shaders/zTextShader");
 		if(font.name.Equals("origami"))
 		{
 			zTextShader = Shader.Find("Resources/Shaders/Textured Text Shader");
-		}
-		tm.gameObject.GetComponent<Renderer>().material.shader = zTextShader;
+		}*/
+		//tm.gameObject.GetComponent<Renderer>().material.shader = zTextShader;
 		tm.gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", mat.mainTexture);
 
 		fontObj.transform.localScale = new Vector3(1,1,1);
