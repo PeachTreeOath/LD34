@@ -33,6 +33,7 @@ public class CityGrowth : MonoBehaviour
 		tileObjs.Add(Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
 		tileObjs.Add(Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
 		tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrailerTile") as GameObject);
+		tileObjs.Add(Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
 		//tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
 		//tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
 		tileWidth = tileObjs[0].GetComponent<SpriteRenderer> ().bounds.size.x;
