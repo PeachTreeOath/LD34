@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 484254}
   - 212: {fileID: 21242674}
   - 114: {fileID: 11423796}
-  - 58: {fileID: 5894410}
   - 114: {fileID: 11439998}
+  - 58: {fileID: 5803606}
   m_Layer: 0
   m_Name: trade_good
   m_TagString: Trade Good
@@ -31,7 +31,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!58 &5894410
+--- !u!58 &5803606
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -44,7 +44,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.345
+  m_Radius: 2
 --- !u!114 &11423796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,6 +123,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

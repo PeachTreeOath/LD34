@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac05b36d5e6ec44f807f4ec3ba004ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragThresh: 0.15
+  dragThresh: 0.2
 --- !u!4 &381752296
 Transform:
   m_ObjectHideFlags: 0
