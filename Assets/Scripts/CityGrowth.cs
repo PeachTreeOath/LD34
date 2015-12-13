@@ -52,7 +52,7 @@ public class CityGrowth : MonoBehaviour
 			tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
 			tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
 			tileObjs.Add (Resources.Load ("Prefabs/Buildings/EmpireTile") as GameObject);
-			//tileObjs.Add (Resources.Load ("Prefabs/Buildings/SpaceNeedleTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/SpaceNeedleTile") as GameObject);
 		}
 		/*
 		if (Application.loadedLevel < 1) {
