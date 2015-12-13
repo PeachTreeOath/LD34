@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class EconomySimulator : MonoBehaviour {
 
+    public float offscreenBuffer = 0; //offset from screen edge, bigger is more offset
 	public float minTimer;
 	public float maxTimer;
 	GameObject [] cities;
 	List<float> timers;
 	List<float> times;
 	List<GameObject> icons;
+    List<GameObject> lines;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +19,7 @@ public class EconomySimulator : MonoBehaviour {
 		times = new List<float>();
 		icons = new List<GameObject>();
 		cities = GameObject.FindGameObjectsWithTag("City");
+        lines = new List<GameObject>(new GameObject[cities.Length]);
 		GameObject goodIconFab = Resources.Load("Prefabs/GoodIcon") as GameObject;
 		for(int i = 0; i < cities.Length; i++)
 		{
@@ -29,7 +32,13 @@ public class EconomySimulator : MonoBehaviour {
 			SpriteRenderer rend = icon.GetComponent<SpriteRenderer>();
 			icons.Add(icon);
 			rend.sprite = Resources.Load<Sprite>("Textures/Trade Goods/"+iconName);
-			icon.transform.position = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + rend.bounds.extents.y) * 1.15f) + Vector3.back;
+			Vector3 desiredPos = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + rend.bounds.extents.y) * 1.15f) + Vector3.back;
+            Vector3 bestPos = getOnscreenPos(desiredPos);
+            if(Vector3.Distance(bestPos,desiredPos) > Mathf.Epsilon) {
+                GameObject newLine = createLineTo(icon, desiredPos); //TODO
+                lines[i] = newLine;
+            }
+            icons[i].transform.position = bestPos;
 		}
 	}
 	
@@ -46,7 +55,55 @@ public class EconomySimulator : MonoBehaviour {
 				iconName = iconName.Substring(0, 1).ToUpper() + iconName.Substring(1);
 				icons[i].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/Trade Goods/"+iconName);
 			}
-			icons[i].transform.position = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + icons[i].GetComponent<Renderer>().bounds.extents.y) * 1.15f) + Vector3.back;
+			Vector3 desiredPos = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + icons[i].GetComponent<Renderer>().bounds.extents.y) * 1.15f) + Vector3.back;
+            Vector3 bestPos = getOnscreenPos(desiredPos);
+            if(lines[i] != null) {
+                Destroy(lines[i]);
+            }
+            if(Vector3.Distance(bestPos,desiredPos) > Mathf.Epsilon) {
+                GameObject newLine = createLineTo(icons[i], desiredPos); 
+                lines[i] = newLine;
+            }
+            icons[i].transform.position = bestPos;
 		}
 	}
+
+    //Get the closest on screen point to desiredPos
+    private Vector3 getOnscreenPos(Vector3 desiredPos) {
+        Vector3 tr = Globals.getTopRightScreenPointInWorldSpace();
+        Vector3 bl = Globals.getBotLeftScreenPointInWorldSpace();
+        float x = Mathf.Clamp(desiredPos.x, bl.x+offscreenBuffer, tr.x - offscreenBuffer);
+        float y = Mathf.Clamp(desiredPos.y, bl.y+offscreenBuffer, tr.y-offscreenBuffer);
+        //if(!Mathf.Equals(x, desiredPos.x)) {
+        //    //add buffer
+        //    if(x < 0) {
+        //        x = x + offscreenBuffer;
+        //    } else {
+        //        x = x - offscreenBuffer;
+        //    }
+        //}
+        //if(!Mathf.Equals(y, desiredPos.y)) {
+        //    //add buffer
+        //    if(y < 0) {
+        //        y = y + offscreenBuffer;
+        //    } else {
+        //        y = y - offscreenBuffer;
+        //    }
+        //}
+
+        return new Vector3(x, y, desiredPos.z);
+    }
+
+    private GameObject createLineTo(GameObject startingObj, Vector3 lineEnd) {
+        GameObject go = new GameObject("line start");
+        go.transform.parent = startingObj.transform;
+        LineRenderer r = go.AddComponent<LineRenderer>();
+        r.material = Resources.Load("Materials/lineMat", typeof(Material)) as Material;
+        r.SetColors(Color.black, Color.cyan);
+        r.SetWidth(0.08F, 0.02F);
+        r.SetVertexCount(2);
+        r.SetPosition(0, startingObj.transform.position);
+        r.SetPosition(1, lineEnd);
+        return go;
+    }
 }
