@@ -43,7 +43,7 @@ public class EnconomyUI : MonoBehaviour {
 		popLabel.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width * .1f, canvasXfrom.rect.height * .95f, 0);
 		popValue.GetComponent<RectTransform>().position = popLabel.GetComponent<RectTransform>().position + new Vector3(popLabel.GetComponent<RectTransform>().rect.width * .65f, 0, 0);
 
-		moneyLabel.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width * .3f, canvasXfrom.rect.height * .95f, 0);
+		moneyLabel.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width * .1f, canvasXfrom.rect.height * .9f, 0);
 		moneyValue.GetComponent<RectTransform>().position = moneyLabel.GetComponent<RectTransform>().position + new Vector3(moneyLabel.GetComponent<RectTransform>().rect.width * .55f, 0, 0);
 	}
 	

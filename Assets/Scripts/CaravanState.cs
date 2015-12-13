@@ -12,6 +12,8 @@ public class CaravanState : MonoBehaviour {
     private Vector3 prevPos;
     private TextMesh bonusText;
 
+	float startTime;
+
     // Use this for initialization
     void Start () {
         //TODO move to a separate tracking object that won't inherit rotation
@@ -51,8 +53,11 @@ public class CaravanState : MonoBehaviour {
 		if(col.gameObject.tag.Equals("Multiplier"))
 		{
 			Debug.Log(Time.time + " caravan hit mult " + col.gameObject.GetComponent<Multiplier>().multiplier + " was " + multiplier);
-			multiplier += col.gameObject.GetComponent<Multiplier>().multiplier - 1;
-			Camera.main.gameObject.GetComponent<MultiplierScheduler>().HitMultiplier(col.gameObject);
+			if(col.gameObject.GetComponent<Multiplier>().multiplier > 1)
+			{
+				multiplier += (col.gameObject.GetComponent<Multiplier>().multiplier - 1);
+				Camera.main.gameObject.GetComponent<MultiplierScheduler>().HitMultiplier(col.gameObject);
+			}
 		}
 	}
 }

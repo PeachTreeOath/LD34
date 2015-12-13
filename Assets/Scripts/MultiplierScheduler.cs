@@ -149,9 +149,16 @@ public class MultiplierScheduler : MonoBehaviour {
 			{
 				spawned[i] = false;
 				spawnCount--;
-				DestroyImmediate(multObjs[i].GetComponent<Blinking>());
-				multObjs[i].GetComponent<Renderer>().enabled = false;
-				multObjs[i].GetComponent<Multiplier>().multiplier = 0;
+				if(multObjs[i] != null)
+				{
+					if(multObjs[i].GetComponent<Blinking>() != null)
+					{
+						multObjs[i].GetComponent<Blinking>().enabled = false;
+					}
+					Destroy(multObjs[i].GetComponent<Blinking>());
+					multObjs[i].GetComponent<Renderer>().enabled = false;
+					multObjs[i].GetComponent<Multiplier>().multiplier = 0;
+				}
 				dying[i] = false;
 				spawnTimers[i] = Time.time;
 				spawnTimes[i] = getSpawnTime();

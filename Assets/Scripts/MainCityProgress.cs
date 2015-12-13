@@ -12,6 +12,7 @@ public class MainCityProgress : MonoBehaviour {
 		progressBar = Instantiate(Resources.Load("Prefabs/LoadingBar") as GameObject) as GameObject;
 		rend = progressBar.GetComponent<Renderer>();
 		rend.material.SetFloat("_Progress", 0);
+		progressBar.transform.position = Globals.playerCity.transform.position + Vector3.down * 1.2f + Vector3.back;
 	}
 	
 	// Update is called once per frame
@@ -28,7 +29,14 @@ public class MainCityProgress : MonoBehaviour {
 			if(Globals.gameState.cityProgress == Globals.cityTierCount)
 			{
 				Destroy(this);
-				Camera.main.gameObject.AddComponent<LoadNextLevel>().shrinkSpeed = 1;
+				if(Application.loadedLevel < LevelUpSchedule.schedule.GetLength(0))
+				{
+					Camera.main.gameObject.AddComponent<LoadNextLevel>().shrinkSpeed = 1;
+				}else if (!Globals.gameState.win)
+				{
+					Globals.gameState.win = true;
+					Camera.main.gameObject.AddComponent<VictoryDisplayer>();
+				}
 			}
 		}
 	}

@@ -22,4 +22,13 @@ public class Globals : MonoBehaviour {
 			gameState.productionCounts = new System.Collections.Generic.List<int>();
 		}
 	}
+
+    public static Vector3 getBotLeftScreenPointInWorldSpace() {
+        return Camera.main.ScreenToWorldPoint(new Vector3(0,0,0));
+    }
+
+    public static Vector3 getTopRightScreenPointInWorldSpace() {
+        return Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
+    }
+
 }

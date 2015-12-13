@@ -44,7 +44,7 @@ public class EnterLevel : MonoBehaviour {
 			}
 		}
 
-		if(Mathf.Abs(Vector3.Distance(endScales[0], ((GameObject) allObjs[0]).transform.localScale)) < .01f)
+		if(Mathf.Abs(Vector3.Distance(endScales[0], Camera.main.gameObject.transform.localScale)) < .01f)
 		{
 			for(int i = 0; i < allObjs.Length; i++)
 			{
