@@ -73,6 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c1f72602572524888012994aae952c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goodType: 0
+  value: 5
   multiplier: 1
 --- !u!212 &21254982
 SpriteRenderer:
@@ -118,6 +120,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: value
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

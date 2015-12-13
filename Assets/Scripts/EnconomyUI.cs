@@ -40,6 +40,7 @@ public class EnconomyUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		moneyValue.GetComponent<Text>().text = Globals.gameState.money + "";
+		popValue.GetComponent<Text>().text = Globals.gameState.population + "";
 	}
 }

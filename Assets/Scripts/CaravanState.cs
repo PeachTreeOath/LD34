@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CaravanState : MonoBehaviour {
 
-	public Globals.GoodTypeEnum goodType;
+	public Globals.GoodTypeEnum goodType = Globals.GoodTypeEnum.CORN;
 	public float value = 5;
 	public float multiplier = 0;
 
