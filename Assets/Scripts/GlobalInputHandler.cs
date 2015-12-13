@@ -5,7 +5,7 @@ using System;
 
 public class GlobalInputHandler : MonoBehaviour {
 
-	public static RaycastHit2D[] hitInfos;
+	public static Collider2D[] hitInfos;
 	public static bool hitSomething;
     public float dragThresh = 0.25f; //time before drag happens when holding click in seconds
     private bool but0Down = false;
@@ -98,17 +98,19 @@ public class GlobalInputHandler : MonoBehaviour {
     private void startDrag(Vector3 mousePos) {
         switch(dragging) {
             case DragState.PRECHECK:
-                Debug.Log("Drag precheck");
+                //Debug.Log("Drag precheck");
                 doRaycast(mousePos);
         		if(hitSomething) {
                     //find first obj hit that will handle the drag
                     //this will also fire the first call
-        		    foreach(RaycastHit2D rh in hitInfos) {
-        		        Func<Vector3, bool>[] f = dragDic[rh.transform.gameObject.GetInstanceID()];
+        		    for(int i = 0; i < hitInfos.Length; i++) {
+                        Func<Vector3, bool>[] f;
+                        dragDic.TryGetValue(hitInfos[i].transform.gameObject.GetInstanceID(),out f);
         		        if(f != null) {
+                            //Debug.Log("Somthing hit");
         		            if(f[0](mousePos)) {
             	                dragging = DragState.DRAGGING_OBJ;
-            	                draggingObject = rh.transform.gameObject;
+            	                draggingObject = hitInfos[i].transform.gameObject;
         		                break; //handler found
         		            }
         		        }
@@ -118,7 +120,7 @@ public class GlobalInputHandler : MonoBehaviour {
                     if(!UIObj && globalDragStart(mousePos)) { //Don't engage UI elements
                         dragging = DragState.DRAGGING_GLOBAL;  
             	    } else {
-                        Debug.Log("Dragging NOTHING");
+                        //Debug.Log("Dragging NOTHING");
                         dragging = DragState.DRAGGING_NOTHING;
                     }
                 }
@@ -137,7 +139,7 @@ public class GlobalInputHandler : MonoBehaviour {
                 break;
 
             default:
-                Debug.LogError("Invalid drag state!");
+                //Debug.LogError("Invalid drag state!");
                 break;
         }
 
@@ -152,7 +154,7 @@ public class GlobalInputHandler : MonoBehaviour {
     }
 
     private bool globalDragStart(Vector3 mousePos) {
-        Debug.Log("Starting global drag");
+        //Debug.Log("Starting global drag");
         if(globalDragHandler != null) {
             return globalDragHandler[0](mousePos);
         }
@@ -190,16 +192,20 @@ public class GlobalInputHandler : MonoBehaviour {
 
 
     void singleClick(Vector3 inputPos) {
-        Debug.Log("Single click");
+        //Debug.Log("Single click");
         doRaycast(inputPos);
         bool result = false;
         if(hitSomething) {
-        Debug.Log("Single click hit something");
-            foreach(RaycastHit2D rh in hitInfos) {
-                Func<Vector3, bool> f = clickDic[rh.transform.gameObject.GetInstanceID()];
+        //Debug.Log("Single click hit something");
+            if(hitInfos == null) {
+                //Debug.Log("WTFFFFF");
+            }
+            for(int i = 0; i < hitInfos.Length; i++) {
+                Func<Vector3, bool> f;
+                clickDic.TryGetValue(hitInfos[i].transform.gameObject.GetInstanceID(),out f);
                 if(f != null) {
                     if(f(inputPos)) {
-        Debug.Log("Single click hit something registered");
+        //Debug.Log("Single click hit something registered");
                         result = true;
                         break; //handler found
                     }
@@ -207,9 +213,9 @@ public class GlobalInputHandler : MonoBehaviour {
             }
         }
         if(!hitSomething && !result){
-        Debug.Log("Single click hit nothing");
+        //Debug.Log("Single click hit nothing");
             if(!UIObj && globalClickHandler != null) { //Don't engage UI elements
-                Debug.Log("Doing global click");
+                //Debug.Log("Doing global click");
                 globalClickHandler(inputPos);
             }
         }
@@ -227,10 +233,14 @@ public class GlobalInputHandler : MonoBehaviour {
     }
 
     private void doRaycast(Vector3 pos) {
+        //Debug.Log("Raycast called");
 		hitSomething = false;
-            hitInfos = Physics2D.RaycastAll(pos, -Vector3.up);
-        	if(hitInfos != null && hitInfos.Length!= 0) {        
-				hitSomething = true;
-			}
+        hitInfos = Physics2D.OverlapPointAll((Vector2)Camera.main.ScreenToWorldPoint(pos));
+        if(hitInfos != null && hitInfos.Length!= 0) {
+		    hitSomething = true;
+		}
+        //for(int i = 0; i < hitInfos.Length; i++) {
+            //Debug.Log("Raycast hit something: " + hitInfos[i].transform.gameObject.name);
+        //}
     }
 }

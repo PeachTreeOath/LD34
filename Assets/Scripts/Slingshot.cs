@@ -16,13 +16,12 @@ public class Slingshot : MonoBehaviour {
     void Start() {
         GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
         active = false;
-        Debug.Log("Registering " + gameObject.name);
         GIH.registerForDrag(gameObject, onDragStart, onDrag, onDragEnd);
     }
 
     bool onDragStart(Vector3 mousePos)
     {
-        Debug.Log("Drag start slingshot");
+        //Debug.Log("Drag start slingshot");
         arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity) as GameObject;
         return true;
     }
@@ -48,36 +47,6 @@ public class Slingshot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Vector3 mousePos = Input.mousePosition;
-        //bool hit = hitThis();
-
-        //if (Input.GetMouseButton(0))
-        //{
-        //    if (!dragging)
-        //    {
-        //        dragging = true;
-        //        if (hit)
-        //        {
-		//			Camera.main.gameObject.GetComponent<DragCamera>().enabled = false;
-		//			Debug.Log(Time.time +" disable drag ");
-        //            active = true;
-        //            onDragStart(mousePos);
-        //        }
-        //    }
-        //    else if (active)
-        //        onDrag(mousePos);
-        //}
-        //else {
-        //    dragging = false;
-        //    if (active)
-        //    {
-		//		Debug.Log(Time.time +" enable drag ");
-		//		Camera.main.gameObject.GetComponent<DragCamera>().enabled = true;
-		//		Camera.main.gameObject.GetComponent<DragCamera>().OnMouseDown(Input.mousePosition);
-        //        active = false;
-        //        onDragEnd(mousePos);
-        //    }
-        //}
 	}
 
     private float getAngle(Vector3 mousePos)
