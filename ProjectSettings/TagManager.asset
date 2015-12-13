@@ -63,3 +63,6 @@ TagManager:
   - name: Bldg5
     uniqueID: 2037277505
     locked: 0
+  - name: Icons
+    uniqueID: 2376839599
+    locked: 0

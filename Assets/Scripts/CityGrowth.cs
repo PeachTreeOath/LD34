@@ -30,20 +30,58 @@ public class CityGrowth : MonoBehaviour
 		tileMap = new int[maxTileSize, maxTileSize];
 		tileMap [maxTileSize / 2, maxTileSize / 2] = 1;
 		tileObjs = new List<GameObject> ();
-		tileObjs.Add (Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
-		tileObjs.Add (Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
-		tileObjs.Add (Resources.Load ("Prefabs/Buildings/TrailerTile") as GameObject);
-		tileObjs.Add (Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
-		//tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
-		//tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
+		LoadResources ();
 		tileWidth = tileObjs [0].GetComponent<SpriteRenderer> ().bounds.size.x;
 		tileHeight = tileWidth / 2;
 		originXTilePos = transform.position.x - maxTileSize / 2 * tileWidth;
 		originYTilePos = transform.position.y;
 
 		GameObject tileObj = tileObjs [Random.Range (0, tileObjs.Count)];
-		GetComponent<SpriteRenderer> ().sprite = tileObj.GetComponent<SpriteRenderer> ().sprite;
+		SpriteRenderer sprite = GetComponent<SpriteRenderer> ();
+		sprite.sprite = tileObj.GetComponent<SpriteRenderer> ().sprite;
+		sprite.sortingLayerName = "Bldg3";
+		sprite.sortingOrder = 3;
 		LevelUp (startingCityLevel-1, true);
+	}
+
+	private void LoadResources()
+	{
+		if (Application.loadedLevel < 1) {
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/TrailerTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
+		} else {
+			tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
+			tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/EmpireTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/SpaceNeedleTile") as GameObject);
+		}
+		/*
+		if (Application.loadedLevel < 1) {
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
+		}
+		if (Application.loadedLevel < 2) {
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
+		}
+		if (Application.loadedLevel < 3) {
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/TrailerTile") as GameObject);
+		}
+		if (Application.loadedLevel < 4) {
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
+		}
+		if (Application.loadedLevel > 0) {
+			tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
+		}
+		if (Application.loadedLevel > 1) {
+			tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
+		}
+		if (Application.loadedLevel > 2) {
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/EmpireTile") as GameObject);
+		}
+		if (Application.loadedLevel > 3) {
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/SpaceNeedleTile") as GameObject);
+		}*/
 	}
 
 	// Use this for initialization
