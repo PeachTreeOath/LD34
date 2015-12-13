@@ -20,16 +20,20 @@ public class EnconomyUI : MonoBehaviour {
 		moneyLabel = Instantiate(textFab);
 		moneyLabel.transform.SetParent(canvas.transform, false);
 		moneyLabel.GetComponent<Text>().text = "Money: $";
+		moneyLabel.GetComponent<Text>().raycastTarget = false;
 		moneyValue = Instantiate(textFab);
 		moneyValue.transform.SetParent(canvas.transform, false);
 		moneyValue.GetComponent<Text>().text = "0";
+		moneyValue.GetComponent<Text>().raycastTarget = false;
 
 		popLabel = Instantiate(textFab);
 		popLabel.transform.SetParent(canvas.transform, false);
 		popLabel.GetComponent<Text>().text = "Population: ";
+		popLabel.GetComponent<Text>().raycastTarget = false;
 		popValue = Instantiate(textFab);
 		popValue.transform.SetParent(canvas.transform, false);
 		popValue.GetComponent<Text>().text = "0";
+		popValue.GetComponent<Text>().raycastTarget = false;
 
 		popLabel.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width * .1f, canvasXfrom.rect.height * .95f, 0);
 		popValue.GetComponent<RectTransform>().position = popLabel.GetComponent<RectTransform>().position + new Vector3(popLabel.GetComponent<RectTransform>().rect.width * .65f, 0, 0);
