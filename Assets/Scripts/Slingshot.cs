@@ -82,4 +82,9 @@ public class Slingshot : MonoBehaviour {
 
         return false;
     }
+
+    void OnDestroy() {
+        Debug.Log("Doing destroy on slingshot");
+        GIH.cancelDragReg(gameObject);
+    }
 }

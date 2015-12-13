@@ -10,6 +10,7 @@ public class GlobalInputHandler : MonoBehaviour {
     public float dragThresh = 0.25f; //time before drag happens when holding click in seconds
     private bool but0Down = false;
     private float time0Down = 0;
+    private Vector3 origDownLoc = Vector3.zero;
     enum DragState {PRECHECK, DRAGGING_OBJ, DRAGGING_GLOBAL, DRAGGING_NOTHING };
     private DragState dragging = DragState.PRECHECK;
     private GameObject draggingObject = null;
@@ -84,7 +85,9 @@ public class GlobalInputHandler : MonoBehaviour {
                 }
                 time0Down = 0;
             } else {
-                if(time0Down >= dragThresh) {
+                float distMoved = Vector3.Distance(inputP, origDownLoc);
+                //Debug.Log("Dist Moved: " + distMoved);
+                if(time0Down >= dragThresh || distMoved > 10) {
             	    startDrag(inputP);
             	}
             }
@@ -92,6 +95,7 @@ public class GlobalInputHandler : MonoBehaviour {
             //fresh click, maybe.  If the mouse is let up before a drag starts then it is a click
             UIObj = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
             but0Down = true;
+            origDownLoc = inputP;
         }	
     }
 
@@ -233,14 +237,14 @@ public class GlobalInputHandler : MonoBehaviour {
     }
 
     private void doRaycast(Vector3 pos) {
-        //Debug.Log("Raycast called");
+        Debug.Log("Raycast called");
 		hitSomething = false;
         hitInfos = Physics2D.OverlapPointAll((Vector2)Camera.main.ScreenToWorldPoint(pos));
         if(hitInfos != null && hitInfos.Length!= 0) {
 		    hitSomething = true;
 		}
-        //for(int i = 0; i < hitInfos.Length; i++) {
-            //Debug.Log("Raycast hit something: " + hitInfos[i].transform.gameObject.name);
-        //}
+        for(int i = 0; i < hitInfos.Length; i++) {
+            Debug.Log("Raycast hit something: " + hitInfos[i].transform.gameObject.name);
+        }
     }
 }
