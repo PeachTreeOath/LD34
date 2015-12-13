@@ -37,7 +37,10 @@ public class CityGrowth : MonoBehaviour
 		originYTilePos = transform.position.y;
 
 		GameObject tileObj = tileObjs [Random.Range (0, tileObjs.Count)];
-		GetComponent<SpriteRenderer> ().sprite = tileObj.GetComponent<SpriteRenderer> ().sprite;
+		SpriteRenderer sprite = GetComponent<SpriteRenderer> ();
+		sprite.sprite = tileObj.GetComponent<SpriteRenderer> ().sprite;
+		sprite.sortingLayerName = "Bldg3";
+		sprite.sortingOrder = 3;
 		LevelUp (startingCityLevel-1, true);
 	}
 
