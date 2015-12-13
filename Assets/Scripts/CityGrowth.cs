@@ -3,14 +3,16 @@ using System.Collections;
 
 public class CityGrowth : MonoBehaviour
 {
-
+	/*
 	public float shakeAmount = 0.1f;
 	public float shakeDecreaseFactor = 1f;
 	public float popTime = 1f;
+	*/
+	public int startingCityLevel = 1;
 
+	private int cityLevel = 1;
 	private float tileWidth = 110;
 	private float tileHeight = 62;
-	private int cityLevel = 1;
 	private int tileSize = 1;
 	private int maxTileSize = 5; // 1x1, 3x3, 5x5...
 	private float originXTilePos;
@@ -32,11 +34,16 @@ public class CityGrowth : MonoBehaviour
 		tileHeight = tileWidth / 2;
 		originXTilePos = transform.position.x - maxTileSize / 2 * tileWidth;
 		originYTilePos = transform.position.y;
+
+		for (int i = 1; i < startingCityLevel; i++) {
+			LevelUp (true);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		/*
 		if (shakeTime > 0) {
 			transform.localPosition = origPos + Random.insideUnitCircle * shakeAmount;
 			shakeTime -= Time.deltaTime * shakeDecreaseFactor;
@@ -44,9 +51,10 @@ public class CityGrowth : MonoBehaviour
 			shakeTime = 0;
 			transform.localPosition = origPos;
 		}
+		*/
 	}
 
-	public void LevelUp ()
+	public void LevelUp (bool skipAnimation)
 	{
 		cityLevel++;
 		if (cityLevel > Mathf.Pow (tileSize, 2)) {
@@ -64,6 +72,7 @@ public class CityGrowth : MonoBehaviour
 					float imgX = originXTilePos + (x * tileWidth / 2) + (y * tileWidth / 2);
 					float imgY = originYTilePos - (x * tileHeight / 2) + (y * tileHeight / 2);
 					GameObject newTile = (GameObject)Instantiate (baseTileObj, new Vector2 (imgX, imgY), Quaternion.identity);
+					newTile.GetComponent<BaseTile> ().SkipAnimation ();
 					newTile.transform.parent = this.gameObject.transform;
 					newTile.GetComponent<SpriteRenderer> ().sortingLayerName = "Bldg" + (x + 1);
 					newTile.GetComponent<SpriteRenderer> ().sortingOrder = maxTileSize - y;
