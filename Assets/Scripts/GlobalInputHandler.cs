@@ -237,14 +237,14 @@ public class GlobalInputHandler : MonoBehaviour {
     }
 
     private void doRaycast(Vector3 pos) {
-        Debug.Log("Raycast called");
+        //Debug.Log("Raycast called");
 		hitSomething = false;
         hitInfos = Physics2D.OverlapPointAll((Vector2)Camera.main.ScreenToWorldPoint(pos));
         if(hitInfos != null && hitInfos.Length!= 0) {
 		    hitSomething = true;
 		}
-        for(int i = 0; i < hitInfos.Length; i++) {
-            Debug.Log("Raycast hit something: " + hitInfos[i].transform.gameObject.name);
-        }
+        //for(int i = 0; i < hitInfos.Length; i++) {
+        //    Debug.Log("Raycast hit something: " + hitInfos[i].transform.gameObject.name);
+        //}
     }
 }
