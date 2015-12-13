@@ -143,6 +143,7 @@ GameObject:
   - 61: {fileID: 124664711}
   - 114: {fileID: 124664707}
   - 114: {fileID: 124664708}
+  - 114: {fileID: 124664712}
   m_Layer: 0
   m_Name: HomeCity
   m_TagString: Player
@@ -228,6 +229,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 2.04, y: 1.82}
+--- !u!114 &124664712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124664706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874d53722570d2b46aab45cdaa858a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingCityLevel: 1
 --- !u!1 &191365139
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874d53722570d2b46aab45cdaa858a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCityLevel: 3
+  startingCityLevel: 5
 --- !u!1 &543503947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,7 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874d53722570d2b46aab45cdaa858a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCityLevel: 1
+  startingCityLevel: 2
 --- !u!114 &1070598989
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,22 +30,20 @@ public class CityGrowth : MonoBehaviour
 		tileMap = new int[maxTileSize, maxTileSize];
 		tileMap [maxTileSize / 2, maxTileSize / 2] = 1;
 		tileObjs = new List<GameObject> ();
-		tileObjs.Add(Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
-		tileObjs.Add(Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
-		tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrailerTile") as GameObject);
-		tileObjs.Add(Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
+		tileObjs.Add (Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
+		tileObjs.Add (Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
+		tileObjs.Add (Resources.Load ("Prefabs/Buildings/TrailerTile") as GameObject);
+		tileObjs.Add (Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
 		//tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
 		//tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
-		tileWidth = tileObjs[0].GetComponent<SpriteRenderer> ().bounds.size.x;
+		tileWidth = tileObjs [0].GetComponent<SpriteRenderer> ().bounds.size.x;
 		tileHeight = tileWidth / 2;
 		originXTilePos = transform.position.x - maxTileSize / 2 * tileWidth;
 		originYTilePos = transform.position.y;
 
-		GameObject tileObj = tileObjs [Random.Range(0,tileObjs.Count)];
+		GameObject tileObj = tileObjs [Random.Range (0, tileObjs.Count)];
 		GetComponent<SpriteRenderer> ().sprite = tileObj.GetComponent<SpriteRenderer> ().sprite;
-		for (int i = 1; i < startingCityLevel; i++) {
-			LevelUp (true);
-		}
+		LevelUp (startingCityLevel-1, true);
 	}
 
 	// Use this for initialization
@@ -68,32 +66,34 @@ public class CityGrowth : MonoBehaviour
 		*/
 	}
 
-	public void LevelUp (bool skipAnimation)
+	public void LevelUp (int numLevels, bool skipAnimation)
 	{
-		cityLevel++;
-		if (cityLevel > Mathf.Pow (tileSize, 2)) {
-			tileSize += 2;
-		}
+		for (int i = 0; i < numLevels; i++) {
+			cityLevel++;
+			if (cityLevel > Mathf.Pow (tileSize, 2)) {
+				tileSize += 2;
+			}
 
-		if (!(cityLevel > Mathf.Pow (maxTileSize, 2))) {
-			while (true) {
-				int randX = Random.Range (-tileSize/2, (tileSize/2) +1) ;
-				int randY = Random.Range (-tileSize/2, (tileSize/2) +1) ;
-				int x = randX + (maxTileSize / 2);
-				int y = randY + (maxTileSize / 2);
-				if (tileMap [x, y] == 0) {
-					tileMap [x, y] = 1;
-					float imgX = originXTilePos + (x * tileWidth / 2) + (y * tileWidth / 2);
-					float imgY = originYTilePos - (x * tileHeight / 2) + (y * tileHeight / 2);
-					GameObject tileObj = tileObjs [Random.Range(0,tileObjs.Count)];
-					GameObject newTile = (GameObject)Instantiate (tileObj, new Vector2 (imgX, imgY), Quaternion.identity);
-					if (skipAnimation) {
-						newTile.GetComponent<BaseTile> ().SkipAnimation ();
+			if (!(cityLevel > Mathf.Pow (maxTileSize, 2))) {
+				while (true) {
+					int randX = Random.Range (-tileSize / 2, (tileSize / 2) + 1);
+					int randY = Random.Range (-tileSize / 2, (tileSize / 2) + 1);
+					int x = randX + (maxTileSize / 2);
+					int y = randY + (maxTileSize / 2);
+					if (tileMap [x, y] == 0) {
+						tileMap [x, y] = 1;
+						float imgX = originXTilePos + (x * tileWidth / 2) + (y * tileWidth / 2);
+						float imgY = originYTilePos - (x * tileHeight / 2) + (y * tileHeight / 2);
+						GameObject tileObj = tileObjs [Random.Range (0, tileObjs.Count)];
+						GameObject newTile = (GameObject)Instantiate (tileObj, new Vector2 (imgX, imgY), Quaternion.identity);
+						if (skipAnimation) {
+							newTile.GetComponent<BaseTile> ().SkipAnimation ();
+						}
+						newTile.transform.parent = this.gameObject.transform;
+						newTile.GetComponent<SpriteRenderer> ().sortingLayerName = "Bldg" + (x + 1);
+						newTile.GetComponent<SpriteRenderer> ().sortingOrder = maxTileSize - y;
+						break;
 					}
-					newTile.transform.parent = this.gameObject.transform;
-					newTile.GetComponent<SpriteRenderer> ().sortingLayerName = "Bldg" + (x + 1);
-					newTile.GetComponent<SpriteRenderer> ().sortingOrder = maxTileSize - y;
-					break;
 				}
 			}
 		}
