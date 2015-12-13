@@ -16,10 +16,13 @@ public class CaravanState : MonoBehaviour {
     void Start () {
         //TODO move to a separate tracking object that won't inherit rotation
         GameObject label = Utility.CreateTextObject(Resources.Load<Font>("Fonts/calibri"), Resources.Load<Material>("Fonts/calibri_mat"));
-        label.transform.parent = gameObject.transform;
         label.transform.position = Vector3.zero;
         label.transform.localScale *= .05f;
         label.transform.localPosition = Vector3.zero;
+
+        AnchorTo anchor = label.AddComponent<AnchorTo>();
+        anchor.target = gameObject;
+        anchor.offset = Vector3.up * 0.5f;
 
         bonusText = label.GetComponent<TextMesh>();
         bonusText.anchor = TextAnchor.LowerCenter;
