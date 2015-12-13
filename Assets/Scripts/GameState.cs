@@ -10,4 +10,5 @@ public class GameState : ScriptableObject {
 	public float population;
 	public float moneyGoal;
 	public int cityProgress;
+	public bool win = false;
 }

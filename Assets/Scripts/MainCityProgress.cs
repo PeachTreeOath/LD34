@@ -12,6 +12,7 @@ public class MainCityProgress : MonoBehaviour {
 		progressBar = Instantiate(Resources.Load("Prefabs/LoadingBar") as GameObject) as GameObject;
 		rend = progressBar.GetComponent<Renderer>();
 		rend.material.SetFloat("_Progress", 0);
+		progressBar.transform.position = Globals.playerCity.transform.position + Vector3.down * 1.2f + Vector3.back;
 	}
 	
 	// Update is called once per frame

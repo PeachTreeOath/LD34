@@ -6,20 +6,25 @@ public class CaravanState : MonoBehaviour {
 	public Globals.GoodTypeEnum goodType = Globals.GoodTypeEnum.CORN;
     public float baseValue = 0;
 	public float value = 5;
-	public float multiplier = 1;
+	public float multiplier = 0;
     public float dollarsPerDistance = 100;
 
     private Vector3 prevPos;
     private TextMesh bonusText;
 
+	float startTime;
+
     // Use this for initialization
     void Start () {
         //TODO move to a separate tracking object that won't inherit rotation
         GameObject label = Utility.CreateTextObject(Resources.Load<Font>("Fonts/calibri"), Resources.Load<Material>("Fonts/calibri_mat"));
-        label.transform.parent = gameObject.transform;
         label.transform.position = Vector3.zero;
         label.transform.localScale *= .05f;
         label.transform.localPosition = Vector3.zero;
+
+        AnchorTo anchor = label.AddComponent<AnchorTo>();
+        anchor.target = gameObject;
+        anchor.offset = Vector3.up * 0.5f;
 
         bonusText = label.GetComponent<TextMesh>();
         bonusText.anchor = TextAnchor.LowerCenter;
@@ -48,8 +53,11 @@ public class CaravanState : MonoBehaviour {
 		if(col.gameObject.tag.Equals("Multiplier"))
 		{
 			Debug.Log(Time.time + " caravan hit mult " + col.gameObject.GetComponent<Multiplier>().multiplier + " was " + multiplier);
-			multiplier += col.gameObject.GetComponent<Multiplier>().multiplier - 1;
-            Destroy(col.gameObject);
+			if(col.gameObject.GetComponent<Multiplier>().multiplier > 1)
+			{
+				multiplier += (col.gameObject.GetComponent<Multiplier>().multiplier - 1);
+			}
+			Camera.main.gameObject.GetComponent<MultiplierScheduler>().HitMultiplier(col.gameObject);
 		}
 	}
 }

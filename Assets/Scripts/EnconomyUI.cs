@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class EnconomyUI : MonoBehaviour {
 
@@ -42,13 +43,13 @@ public class EnconomyUI : MonoBehaviour {
 		popLabel.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width * .1f, canvasXfrom.rect.height * .95f, 0);
 		popValue.GetComponent<RectTransform>().position = popLabel.GetComponent<RectTransform>().position + new Vector3(popLabel.GetComponent<RectTransform>().rect.width * .65f, 0, 0);
 
-		moneyLabel.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width * .3f, canvasXfrom.rect.height * .95f, 0);
+		moneyLabel.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width * .1f, canvasXfrom.rect.height * .9f, 0);
 		moneyValue.GetComponent<RectTransform>().position = moneyLabel.GetComponent<RectTransform>().position + new Vector3(moneyLabel.GetComponent<RectTransform>().rect.width * .55f, 0, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		moneyValue.GetComponent<Text>().text = Globals.gameState.money + "";  //money maker will handle money display in depth, we can combine these if it doesnt get too ugly
+		moneyValue.GetComponent<Text>().text = String.Format("{0:0.00}", Globals.gameState.money) + "";  //money maker will handle money display in depth, we can combine these if it doesnt get too ugly
 		popValue.GetComponent<Text>().text = Globals.gameState.population + "";
 	}
 }

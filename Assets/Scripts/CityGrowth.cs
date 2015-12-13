@@ -30,13 +30,19 @@ public class CityGrowth : MonoBehaviour
 		tileMap = new int[maxTileSize, maxTileSize];
 		tileMap [maxTileSize / 2, maxTileSize / 2] = 1;
 		tileObjs = new List<GameObject> ();
-		tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
-		tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
+		tileObjs.Add(Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
+		tileObjs.Add(Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
+		tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrailerTile") as GameObject);
+		tileObjs.Add(Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
+		//tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
+		//tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
 		tileWidth = tileObjs[0].GetComponent<SpriteRenderer> ().bounds.size.x;
 		tileHeight = tileWidth / 2;
 		originXTilePos = transform.position.x - maxTileSize / 2 * tileWidth;
 		originYTilePos = transform.position.y;
 
+		GameObject tileObj = tileObjs [Random.Range(0,tileObjs.Count)];
+		GetComponent<SpriteRenderer> ().sprite = tileObj.GetComponent<SpriteRenderer> ().sprite;
 		for (int i = 1; i < startingCityLevel; i++) {
 			LevelUp (true);
 		}
