@@ -5,18 +5,22 @@ public class CityScript : MonoBehaviour {
 
 	public GameObject caravanPrefab;
 	public float shotSpeed = 20f;
+    private GlobalInputHandler GIH;
 
 	// Use this for initialization
 	void Start () {
-	
+       GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
-			Shoot ();
-		}
+        GIH.setGlobalClickHandler(onClick);
 	}
+
+    private bool onClick(Vector3 pos) {
+        Shoot();
+        return true;
+    }
 
 	private void Shoot()
 	{

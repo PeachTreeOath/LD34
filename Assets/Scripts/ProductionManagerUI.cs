@@ -7,15 +7,12 @@ using UnityEngine.EventSystems;
 public class ProductionManagerUI : MonoBehaviour {
 
 	public List<string> goods;
-	Camera mainCam;
 	List<Slider> sliders;
-	bool disabledDrag;
+    private GlobalInputHandler GIH; 
 
 	// Use this for initialization
 	void Start () {
-		disabledDrag = false;
-		mainCam = GameObject.Find("Main Camera").GetComponent<Camera>();
-
+        GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
 		BuildUI();
 	}
 
@@ -30,6 +27,8 @@ public class ProductionManagerUI : MonoBehaviour {
 		for(int i = 0; i < goods.Count; i++)
 		{
 			GameObject slider = Instantiate(sliderFab);
+            GIH.registerForDrag(slider, onDrag, onDrag, onDrag);
+            GIH.registerForClick(slider, onClick);
 			GameObject text = Instantiate(textFab);
 			text.GetComponent<Text>().text = goods[i];
 			text.GetComponent<Text>().raycastTarget = false;
@@ -41,6 +40,7 @@ public class ProductionManagerUI : MonoBehaviour {
 			sxform.position = (new Vector3(canvasXfrom.rect.width/2, sxform.rect.height * (goods.Count + 1 - i) * 1.2f, 0));
 			sliders.Add(slider.GetComponent<Slider>());
 			Globals.gameState.productionRates.Add(slider.GetComponent<Slider>().value);
+			Globals.gameState.productionCounts.Add(0);
 			RectTransform txform = text.GetComponent<RectTransform>();
 			txform.transform.position = sxform.position + new Vector3(-sxform.rect.width/1.85f, 0, 0);
 		}
@@ -57,15 +57,10 @@ public class ProductionManagerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		bool moved = false;
 		for(int i = 0; i < sliders.Count; i++)
 		{
 			if(Globals.gameState.productionRates[i] != sliders[i].value)
 			{
-				moved = true;
-				Debug.Log(Time.time +" disable drag2  ");
-				disabledDrag = true;
-				Camera.main.GetComponent<DragCamera>().enabled = false;
 				float sum = 0;
 				for(int j = 0; j < sliders.Count; j++)
 				{
@@ -88,17 +83,17 @@ public class ProductionManagerUI : MonoBehaviour {
 				}
 			}
 		}
-		if(!moved)
-		{
-			if(disabledDrag)
-			{
-				Debug.Log(Time.time +" enable drag2 ");
-				disabledDrag = false;
-				Camera.main.GetComponent<DragCamera>().enabled = true;
-				Camera.main.GetComponent<DragCamera>().OnMouseDown(Input.mousePosition);
-			}
-		}
 	}
+
+    bool onClick(Vector3 pos) {
+        Debug.Log("Prod onClick");
+        return true;
+    }
+
+    bool onDrag(Vector3 pos) {
+        Debug.Log("Prod onDrag");
+        return true; //intercept drags over the control
+    }
 
 	void LateUpdate()
 	{
