@@ -56,8 +56,8 @@ public class CaravanState : MonoBehaviour {
 			if(col.gameObject.GetComponent<Multiplier>().multiplier > 1)
 			{
 				multiplier += (col.gameObject.GetComponent<Multiplier>().multiplier - 1);
+				Camera.main.gameObject.GetComponent<MultiplierScheduler>().HitMultiplier(col.gameObject);
 			}
-			Camera.main.gameObject.GetComponent<MultiplierScheduler>().HitMultiplier(col.gameObject);
 		}
 	}
 }

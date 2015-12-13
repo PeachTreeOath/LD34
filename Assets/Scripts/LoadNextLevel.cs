@@ -34,7 +34,7 @@ public class LoadNextLevel : MonoBehaviour {
 		}
 
 		//if(Mathf.Abs(Vector3.Distance(startScales[0], ((GameObject) allObjs[0]).transform.localScale)) < .001f)
-		if(((GameObject) allObjs[0]).transform.localScale.magnitude <= .002f)
+		if(Camera.main.gameObject.transform.localScale.magnitude <= .002f)
 		{
 			Application.LoadLevel(Application.loadedLevel + 1);
 		}
