@@ -4,6 +4,7 @@ using System.Collections;
 public class LevelUpSchedule : MonoBehaviour {
 
 	public static int [,] schedule = new int[,] {
+		{5, 10, 20, 30},
 		{100, 300, 750, 1500},
 		{4000, 9000, 20000, 40000},
 		{100000, 170000, 300000, 600000},
@@ -17,6 +18,9 @@ public class LevelUpSchedule : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Globals.gameState.moneyGoal = schedule[Application.loadedLevel, Globals.gameState.cityProgress];
+		if(Globals.gameState.cityProgress < Globals.cityTierCount)
+		{
+			Globals.gameState.moneyGoal = schedule[Application.loadedLevel, Globals.gameState.cityProgress];
+		}
 	}
 }

@@ -8,6 +8,7 @@ public class MainCityProgress : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Globals.gameState.cityProgress = 0;
 		progressBar = Instantiate(Resources.Load("Prefabs/LoadingBar") as GameObject) as GameObject;
 		rend = progressBar.GetComponent<Renderer>();
 		rend.material.SetFloat("_Progress", 0);
@@ -27,7 +28,7 @@ public class MainCityProgress : MonoBehaviour {
 			if(Globals.gameState.cityProgress == Globals.cityTierCount)
 			{
 				Destroy(this);
-				//TODO: load next level
+				Camera.main.gameObject.AddComponent<LoadNextLevel>().shrinkSpeed = 1;
 			}
 		}
 	}

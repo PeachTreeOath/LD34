@@ -26,13 +26,15 @@ public class LoadNextLevel : MonoBehaviour {
 		for(int i = 0; i < allObjs.Length; i++)
 		{
 			GameObject g = (GameObject) allObjs[i];
-			if(!(g.tag.Equals("Background") || g.layer == LayerMask.NameToLayer("UI")))
+			if(g != null &&
+				!(g.tag.Equals("Background") || g.layer == LayerMask.NameToLayer("UI")))
 			{
 				g.transform.localScale = Vector3.Lerp(startScales[i], startScales[i] * .001f, startTime * shrinkSpeed);
 			}
 		}
 
-		if(Mathf.Abs(Vector3.Distance(startScales[0], ((GameObject) allObjs[0]).transform.localScale)) < .001f)
+		//if(Mathf.Abs(Vector3.Distance(startScales[0], ((GameObject) allObjs[0]).transform.localScale)) < .001f)
+		if(((GameObject) allObjs[0]).transform.localScale.magnitude <= .002f)
 		{
 			Application.LoadLevel(Application.loadedLevel + 1);
 		}

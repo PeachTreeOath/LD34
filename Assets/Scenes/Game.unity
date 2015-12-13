@@ -95,6 +95,8 @@ GameObject:
   - 4: {fileID: 124664710}
   - 212: {fileID: 124664709}
   - 61: {fileID: 124664711}
+  - 114: {fileID: 124664707}
+  - 114: {fileID: 124664708}
   m_Layer: 0
   m_Name: HomeCity
   m_TagString: Player
@@ -102,6 +104,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &124664707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124664706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf72c65ca53402d4782f82e6d4f80eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &124664708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124664706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac675d784f67b846a73a9f73d2fa398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &124664709
 SpriteRenderer:
   m_ObjectHideFlags: 0
