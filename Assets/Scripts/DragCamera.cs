@@ -5,8 +5,8 @@ public class DragCamera : MonoBehaviour {
 
     public float dragSpeed = 1;
 
-    private bool mousedown;
     private Vector3 startDragPos = Vector3.zero;
+    private Vector3 startCamPos = Vector3.zero;
 
     private GlobalInputHandler GIH;
 
@@ -16,7 +16,6 @@ public class DragCamera : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        mousedown = false;
         GIH.setGlobalDragHandler(OnDragStart, OnDrag, OnDragEnd);
     }
 
@@ -25,20 +24,27 @@ public class DragCamera : MonoBehaviour {
     }
 
     bool OnDragStart(Vector3 pos) {
-        startDragPos = pos;
+        startDragPos = pos; 
+        startCamPos = Camera.main.transform.position;
         return true;
     }
 
     bool OnDragEnd(Vector3 pos) {
         startDragPos = Vector3.zero;
+        startCamPos = Vector3.zero;
         return true;
     }
 
     bool OnDrag(Vector3 pos) {
-        Vector3 newPos = Camera.main.ScreenToViewportPoint(startDragPos - pos);
-        Vector3 delta = new Vector3(newPos.x * dragSpeed, newPos.y * dragSpeed, 0);
+        Vector3 posDelta = Camera.main.ScreenToWorldPoint(startDragPos) - Camera.main.ScreenToWorldPoint(pos);
+        posDelta.x *= -1;
+        posDelta.y *= -1;
+        if(posDelta.sqrMagnitude > 0.1) {
+            Vector3 camNew = startCamPos - posDelta;
 
-        Camera.main.transform.Translate(delta, Space.World);
+        	//Camera.main.transform.Translate(delta, Space.World);
+        	Camera.main.transform.position = camNew;
+        }
         return true;
     }
 }
