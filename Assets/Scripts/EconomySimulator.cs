@@ -46,6 +46,7 @@ public class EconomySimulator : MonoBehaviour {
 				iconName = iconName.Substring(0, 1).ToUpper() + iconName.Substring(1);
 				icons[i].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/Trade Goods/"+iconName);
 			}
+			icons[i].transform.position = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + icons[i].GetComponent<Renderer>().bounds.extents.y) * 1.15f) + Vector3.back;
 		}
 	}
 }

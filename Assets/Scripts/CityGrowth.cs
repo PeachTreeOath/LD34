@@ -36,7 +36,7 @@ public class CityGrowth : MonoBehaviour
 		originYTilePos = transform.position.y;
 
 		for (int i = 1; i < startingCityLevel; i++) {
-			LevelUp (true);
+			//LevelUp (true);
 		}
 	}
 	
