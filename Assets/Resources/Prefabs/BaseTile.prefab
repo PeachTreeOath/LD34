@@ -41,8 +41,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 0
-  vel: 0.05
-  accel: 0.0002
+  vel: 5
+  accel: 12
 --- !u!212 &21248374
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -82,11 +82,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: vel
-      value: 0.05
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: accel
-      value: 0.0002
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Sprite

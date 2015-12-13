@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Multiplier
   - City
+  - Trade Good
   layers:
   - Default
   - TransparentFX
@@ -40,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 1916870405
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
