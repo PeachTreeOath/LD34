@@ -23,8 +23,7 @@ public class CityGrowth : MonoBehaviour
 	private GameObject baseTileObj;
 	private float scaleTarget;
 
-	// Use this for initialization
-	void Start ()
+	void Awake()
 	{
 		origPos = transform.localPosition;
 		tileMap = new int[maxTileSize, maxTileSize];
@@ -36,8 +35,14 @@ public class CityGrowth : MonoBehaviour
 		originYTilePos = transform.position.y;
 
 		for (int i = 1; i < startingCityLevel; i++) {
-			//LevelUp (true);
+			LevelUp (true);
 		}
+	}
+
+	// Use this for initialization
+	void Start ()
+	{
+
 	}
 	
 	// Update is called once per frame
