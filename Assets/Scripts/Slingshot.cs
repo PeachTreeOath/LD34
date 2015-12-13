@@ -84,7 +84,9 @@ public class Slingshot : MonoBehaviour {
     {
         GameObject caravan = (GameObject)Instantiate(caravanPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
         Rigidbody2D rigidBody = caravan.GetComponent<Rigidbody2D>();
-        rigidBody.velocity = new Vector2(Mathf.Cos(angle) * shotSpeed, Mathf.Sin(angle) * shotSpeed);
+		Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+		Vector3 shootDir = rotation * new Vector3(shotSpeed, 0.0f, 0.0f);
+		rigidBody.AddForce(new Vector2(shootDir.x, shootDir.y), ForceMode2D.Impulse);
 
         Destroy(gameObject);
     }
