@@ -81,7 +81,9 @@ public class CityGrowth : MonoBehaviour
 					float imgY = originYTilePos - (x * tileHeight / 2) + (y * tileHeight / 2);
 					GameObject tileObj = tileObjs [Random.Range(0,tileObjs.Count)];
 					GameObject newTile = (GameObject)Instantiate (tileObj, new Vector2 (imgX, imgY), Quaternion.identity);
-					newTile.GetComponent<BaseTile> ().SkipAnimation ();
+					if (skipAnimation) {
+						newTile.GetComponent<BaseTile> ().SkipAnimation ();
+					}
 					newTile.transform.parent = this.gameObject.transform;
 					newTile.GetComponent<SpriteRenderer> ().sortingLayerName = "Bldg" + (x + 1);
 					newTile.GetComponent<SpriteRenderer> ().sortingOrder = maxTileSize - y;
