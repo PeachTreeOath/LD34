@@ -8,4 +8,6 @@ public class GameState : ScriptableObject {
 	public List<float> productionRates;
 	public float money;
 	public float population;
+	public float moneyGoal;
+	public int cityProgress;
 }
