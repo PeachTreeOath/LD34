@@ -45,6 +45,18 @@ public class CityGrowth : MonoBehaviour
 	{
 		if (Application.loadedLevel < 1) {
 			tileObjs.Add (Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/TrailerTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
+		} else {
+			tileObjs.Add(Resources.Load ("Prefabs/Buildings/EiffelTile") as GameObject);
+			tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/EmpireTile") as GameObject);
+			//tileObjs.Add (Resources.Load ("Prefabs/Buildings/SpaceNeedleTile") as GameObject);
+		}
+		/*
+		if (Application.loadedLevel < 1) {
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/IglooTile") as GameObject);
 		}
 		if (Application.loadedLevel < 2) {
 			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HutTile") as GameObject);
@@ -60,12 +72,12 @@ public class CityGrowth : MonoBehaviour
 		}
 		if (Application.loadedLevel > 1) {
 			tileObjs.Add(Resources.Load ("Prefabs/Buildings/TrumpTile") as GameObject);
-		}/*
+		}
 		if (Application.loadedLevel > 2) {
-			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/EmpireTile") as GameObject);
 		}
 		if (Application.loadedLevel > 3) {
-			tileObjs.Add (Resources.Load ("Prefabs/Buildings/HouseTile") as GameObject);
+			tileObjs.Add (Resources.Load ("Prefabs/Buildings/SpaceNeedleTile") as GameObject);
 		}*/
 	}
 

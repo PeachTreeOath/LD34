@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874d53722570d2b46aab45cdaa858a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCityLevel: 1
+  startingCityLevel: 6
 --- !u!114 &10144829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874d53722570d2b46aab45cdaa858a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCityLevel: 1
+  startingCityLevel: 4
 --- !u!114 &1630257211
 MonoBehaviour:
   m_ObjectHideFlags: 0
