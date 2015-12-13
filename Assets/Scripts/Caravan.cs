@@ -14,8 +14,8 @@ public class Caravan : MonoBehaviour {
 	void Start () {
         dying = false;
         deathTimer = float.MaxValue;
-	}
-	
+    }
+
 	// Update is called once per frame
 	void Update () {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -38,6 +38,11 @@ public class Caravan : MonoBehaviour {
                 StartDying();
         }
 	}
+
+    private void updateDying()
+    {
+
+    }
 
     private void StartDying()
     {

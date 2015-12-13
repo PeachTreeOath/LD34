@@ -102,8 +102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goodType: 0
-  value: 5
-  multiplier: 0
+  baseValue: 0
+  value: 0
+  multiplier: 1
+  dollarsPerDistance: 0.5
 --- !u!212 &21254982
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -151,7 +153,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: value
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: timeToDie
@@ -175,7 +177,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: multiplier
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dollarsPerDistance
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
