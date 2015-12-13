@@ -9,9 +9,16 @@ public class EnterLevel : MonoBehaviour {
 	List<Vector3> startScales;
 	List<Vector3> endScales;
 	float startTime;
+    private AudioSource mainMusic;
+    private bool isPlaying = false;
 
 	// Use this for initialization
 	void Start () {
+        mainMusic = GameObject.Find("IntroMusic").GetComponent<AudioSource>();
+        if(mainMusic == null) {
+            Debug.LogError("Failed to load main music :<");
+        }
+        isPlaying = false;
 		startTime = Time.deltaTime;
 		startScales = new List<Vector3>();
 		endScales = new List<Vector3>();
@@ -34,6 +41,10 @@ public class EnterLevel : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		startTime += Time.deltaTime;
+        if(!isPlaying) {
+            isPlaying = true;
+            mainMusic.PlayOneShot(mainMusic.clip, 1);
+        }
 		for(int i = 0; i < allObjs.Length; i++)
 		{
 			GameObject g = (GameObject) allObjs[i];
