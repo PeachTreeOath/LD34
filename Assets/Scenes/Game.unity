@@ -833,8 +833,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c748965ff97b049b1a5ea04f94288b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goodType: 2
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  spawnDelay: 3
+  baseSpawnDelay: 5
 --- !u!4 &1391044031
 Transform:
   m_ObjectHideFlags: 0
@@ -874,8 +875,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c748965ff97b049b1a5ea04f94288b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goodType: 1
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  spawnDelay: 3
+  baseSpawnDelay: 5
 --- !u!4 &1397644022
 Transform:
   m_ObjectHideFlags: 0
@@ -915,8 +917,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c748965ff97b049b1a5ea04f94288b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goodType: 0
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  spawnDelay: 3
+  baseSpawnDelay: 5
 --- !u!4 &1411990253
 Transform:
   m_ObjectHideFlags: 0

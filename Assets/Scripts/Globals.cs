@@ -18,6 +18,7 @@ public class Globals : MonoBehaviour {
 		{
 			gameState = ScriptableObject.CreateInstance<GameState>();
 			gameState.productionRates = new System.Collections.Generic.List<float>();
+			gameState.productionCounts = new System.Collections.Generic.List<int>();
 		}
 	}
 }

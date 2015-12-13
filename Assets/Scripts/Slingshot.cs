@@ -83,12 +83,17 @@ public class Slingshot : MonoBehaviour {
     private void Shoot(float angle)
     {
         GameObject caravan = (GameObject)Instantiate(caravanPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+		caravan.GetComponent<CaravanState>().goodType = gameObject.GetComponent<TradeGood>().goodType;
         Rigidbody2D rigidBody = caravan.GetComponent<Rigidbody2D>();
 		Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 		Vector3 shootDir = rotation * new Vector3(shotSpeed, 0.0f, 0.0f);
 		rigidBody.AddForce(new Vector2(shootDir.x, shootDir.y), ForceMode2D.Impulse);
 
-        Destroy(gameObject);
+		Globals.gameState.productionCounts[(int)gameObject.GetComponent<TradeGood>().goodType]--;
+		if(Globals.gameState.productionCounts[(int)gameObject.GetComponent<TradeGood>().goodType] == 0)
+		{
+        	Destroy(gameObject);
+		}
     }
 
     private bool hitThis()
