@@ -20,7 +20,14 @@ public class LevelUpSchedule : MonoBehaviour {
 	void Update () {
 		if(Globals.gameState.cityProgress < Globals.cityTierCount)
 		{
-			Globals.gameState.moneyGoal = schedule[Application.loadedLevel, Globals.gameState.cityProgress];
+			if(Application.loadedLevel < schedule.GetLength(0))
+			{
+				Globals.gameState.moneyGoal = schedule[Application.loadedLevel, Globals.gameState.cityProgress];
+			}else if (!Globals.gameState.win)
+			{
+				Globals.gameState.win = true;
+				Camera.main.gameObject.AddComponent<VictoryDisplayer>();
+			}
 		}
 	}
 }
