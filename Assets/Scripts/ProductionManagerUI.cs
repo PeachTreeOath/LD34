@@ -37,7 +37,7 @@ public class ProductionManagerUI : MonoBehaviour {
 			text.transform.SetParent(canvas.transform, false);
 
 			RectTransform sxform = slider.GetComponent<RectTransform>();
-			sxform.position = (new Vector3(canvasXfrom.rect.width/2, sxform.rect.height * (goods.Count + 1 - i) * 1.2f, 0));
+			sxform.position = (new Vector3(canvasXfrom.rect.width*.75f, sxform.rect.height * (goods.Count + 1 - i) * 1.2f, 0));
 			sliders.Add(slider.GetComponent<Slider>());
 			Globals.gameState.productionRates.Add(slider.GetComponent<Slider>().value);
 			Globals.gameState.productionCounts.Add(0);
@@ -53,6 +53,10 @@ public class ProductionManagerUI : MonoBehaviour {
 		RectTransform sxform2 = sliders[0].GetComponent<RectTransform>();
 		RectTransform txform2 = textTitle.GetComponent<RectTransform>();
 		txform2.transform.position = sxform2.position + new Vector3(0, sxform2.rect.height/2 + txform2.rect.height/2 + 5, 0);
+
+		GameObject bgPanelFab = Resources.Load("Prefabs/UI/ScrollerBG") as GameObject;
+		GameObject bgPanel = Instantiate(bgPanelFab) as GameObject;
+		bgPanel.transform.SetParent(canvasXfrom, false);
 	}
 	
 	// Update is called once per frame
