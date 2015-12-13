@@ -26,7 +26,7 @@ public class LoadNextLevel : MonoBehaviour {
 		for(int i = 0; i < allObjs.Length; i++)
 		{
 			GameObject g = (GameObject) allObjs[i];
-			if(!g.tag.Equals("Background") && g.layer != LayerMask.NameToLayer("UI"))
+			if(!(g.tag.Equals("Background") || g.layer == LayerMask.NameToLayer("UI")))
 			{
 				g.transform.localScale = Vector3.Lerp(startScales[i], startScales[i] * .001f, startTime * shrinkSpeed);
 			}
