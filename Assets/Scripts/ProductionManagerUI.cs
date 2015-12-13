@@ -24,6 +24,9 @@ public class ProductionManagerUI : MonoBehaviour {
 		GameObject textFab = Resources.Load("Prefabs/UI/UIText") as GameObject;
 		GameObject canvas = GameObject.Find("Canvas");
 		RectTransform canvasXfrom = canvas.GetComponent<RectTransform>();
+		GameObject scrollerBG = Instantiate(Resources.Load("Prefabs/UI/ScrollerBG")) as GameObject;
+		scrollerBG.transform.SetParent(canvasXfrom, false);
+
 		for(int i = 0; i < goods.Count; i++)
 		{
 			GameObject slider = Instantiate(sliderFab);
