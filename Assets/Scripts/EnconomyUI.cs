@@ -49,11 +49,7 @@ public class EnconomyUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
-		moneyValue.GetComponent<Text>().text = Mathf.FloorToInt(Globals.gameState.money) + "";  //money maker will handle money display in depth, we can combine these if it doesnt get too ugly
-=======
 		moneyValue.GetComponent<Text>().text = String.Format("{0:0.00}", Globals.gameState.money) + "";  //money maker will handle money display in depth, we can combine these if it doesnt get too ugly
->>>>>>> 3704f7b86126e316ee4d66af3b874e2c95720d39
 		popValue.GetComponent<Text>().text = Globals.gameState.population + "";
 	}
 }
