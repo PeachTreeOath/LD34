@@ -7,13 +7,12 @@ using UnityEngine.EventSystems;
 public class ProductionManagerUI : MonoBehaviour {
 
 	public List<string> goods;
-	Camera mainCam;
 	List<Slider> sliders;
+    private GlobalInputHandler GIH; 
 
 	// Use this for initialization
 	void Start () {
-		mainCam = GameObject.Find("Main Camera").GetComponent<Camera>();
-
+        GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
 		BuildUI();
 	}
 
@@ -28,6 +27,8 @@ public class ProductionManagerUI : MonoBehaviour {
 		for(int i = 0; i < goods.Count; i++)
 		{
 			GameObject slider = Instantiate(sliderFab);
+            GIH.registerForDrag(slider, onDrag, onDrag, onDrag);
+            GIH.registerForClick(slider, onClick);
 			GameObject text = Instantiate(textFab);
 			text.GetComponent<Text>().text = goods[i];
 			text.GetComponent<Text>().raycastTarget = false;
@@ -55,13 +56,10 @@ public class ProductionManagerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		bool moved = false;
 		for(int i = 0; i < sliders.Count; i++)
 		{
 			if(Globals.gameState.productionRates[i] != sliders[i].value)
 			{
-				moved = true;
-				Camera.main.GetComponent<DragCamera>().enabled = false;
 				float sum = 0;
 				for(int j = 0; j < sliders.Count; j++)
 				{
@@ -84,15 +82,17 @@ public class ProductionManagerUI : MonoBehaviour {
 				}
 			}
 		}
-		if(!moved)
-		{
-			if(!Camera.main.GetComponent<DragCamera>().enabled)
-			{
-				Camera.main.GetComponent<DragCamera>().enabled = true;
-				Camera.main.GetComponent<DragCamera>().OnMouseDown(Input.mousePosition);
-			}
-		}
 	}
+
+    bool onClick(Vector3 pos) {
+        Debug.Log("Prod onClick");
+        return true;
+    }
+
+    bool onDrag(Vector3 pos) {
+        Debug.Log("Prod onDrag");
+        return true; //intercept drags over the control
+    }
 
 	void LateUpdate()
 	{
