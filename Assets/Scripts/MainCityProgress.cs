@@ -29,7 +29,7 @@ public class MainCityProgress : MonoBehaviour {
 			if(Globals.gameState.cityProgress == Globals.cityTierCount)
 			{
 				Destroy(this);
-				if(Application.loadedLevel < schedule.GetLength(0))
+				if(Application.loadedLevel < LevelUpSchedule.schedule.GetLength(0))
 				{
 					Camera.main.gameObject.AddComponent<LoadNextLevel>().shrinkSpeed = 1;
 				}else if (!Globals.gameState.win)
