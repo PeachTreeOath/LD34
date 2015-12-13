@@ -47,7 +47,8 @@ public class ActualGoodsSpawner : MonoBehaviour {
 	        tradeGoodScript.spawner = gameObject;
 		}
 
-		goodsSpawnTime = Mathf.Max(0, baseSpawnDelay - Globals.gameState.population * Globals.gameState.productionRates[(int)goodType]);
+		float minPop = Mathf.Max(1, Globals.gameState.population);
+		goodsSpawnTime = Mathf.Max(0, baseSpawnDelay - Globals.gameState.productionRates[(int)goodType] * (Globals.gameState.money/minPop));
 		Invoke("doSpawn", goodsSpawnTime);
     }
 	
