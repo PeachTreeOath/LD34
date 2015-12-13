@@ -585,6 +585,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingCityLevel: 3
+--- !u!1 &543503947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 543503949}
+  - 114: {fileID: 543503948}
+  m_Layer: 0
+  m_Name: MoneyMaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &543503948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543503947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e0dfd1c3ae425499fa2ddba6d328a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orderedMoneyPrefabs:
+  - {fileID: 155134, guid: 7428ee2064c64c14597616db608bd863, type: 2}
+  - {fileID: 195322, guid: abb311f6d83d9ec45a6bee4d98126d83, type: 2}
+  - {fileID: 111792, guid: df273f5c49942e94994d5ec55424e137, type: 2}
+  - {fileID: 124230, guid: f88538659cdc6d24ab9b559001ff013d, type: 2}
+  - {fileID: 178698, guid: 12d998eb1278ebb4f8ae66e9ed65c237, type: 2}
+  - {fileID: 147320, guid: 1e0734c468c70324a9df6a63b3844f52, type: 2}
+  - {fileID: 163806, guid: 5c4cda482f88d204c8b2f7b1c74f0614, type: 2}
+--- !u!4 &543503949
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543503947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2879398, y: -0.29221395, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
 --- !u!1 &552039894
 GameObject:
   m_ObjectHideFlags: 0
