@@ -16,6 +16,7 @@ public class BouncyScaler : MonoBehaviour {
 	int tarIdx;
 	
 	Vector3 one;
+	float totalTime;
 	
 	// Use this for initialization
 	void Start () {
@@ -27,14 +28,15 @@ public class BouncyScaler : MonoBehaviour {
 		scales[0] = startScale;
 		scales[1] = destScale;
 		tarIdx = 1;
+		totalTime = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {		
-		if( Mathf.Abs(Vector3.Distance(scales[tarIdx^1], scales[tarIdx])) > epsilon)
+		if( Mathf.Abs(Vector3.Distance(transform.localScale, scales[tarIdx])) > epsilon)
 		{
-			transform.localScale += one * Time.deltaTime * scaleSpeed * scaleDir;
-			scales[tarIdx ^ 1] = transform.localScale;
+			totalTime += Time.deltaTime;
+			transform.localScale = Vector3.Lerp(scales[tarIdx^1], scales[tarIdx], totalTime * scaleSpeed);
 		}else
 		{
 			if(tarIdx == 0)
@@ -44,8 +46,7 @@ public class BouncyScaler : MonoBehaviour {
 			transform.localScale = scales[tarIdx];
 			scaleDir = -scaleDir;
 			tarIdx = tarIdx ^ 1;
-			scales[0] = startScale;
-			scales[1] = destScale;
+			totalTime = 0;
 		}
 	}
 }

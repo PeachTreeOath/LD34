@@ -41,7 +41,7 @@ public class ActualGoodsSpawner : MonoBehaviour {
 			BouncyScaler bs = tradeGood.AddComponent<BouncyScaler>();
 			bs.targetScale = 1.4f;
 			bs.epsilon = .01f;
-			bs.scaleSpeed = .2f;
+			bs.scaleSpeed = 1f;
 			tradeGood.GetComponent<TradeGood>().goodType = goodType;
 	        TradeGood tradeGoodScript = tradeGood.GetComponent<TradeGood>(); //TODO this seems hella hacky...
 	        tradeGoodScript.spawner = gameObject;

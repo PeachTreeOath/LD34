@@ -53,10 +53,6 @@ public class ProductionManagerUI : MonoBehaviour {
 		RectTransform sxform2 = sliders[0].GetComponent<RectTransform>();
 		RectTransform txform2 = textTitle.GetComponent<RectTransform>();
 		txform2.transform.position = sxform2.position + new Vector3(0, sxform2.rect.height/2 + txform2.rect.height/2 + 5, 0);
-
-		GameObject bgPanelFab = Resources.Load("Prefabs/UI/ScrollerBG") as GameObject;
-		GameObject bgPanel = Instantiate(bgPanelFab) as GameObject;
-		bgPanel.transform.SetParent(canvasXfrom, false);
 	}
 	
 	// Update is called once per frame
