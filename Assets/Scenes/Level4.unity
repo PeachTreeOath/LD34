@@ -997,6 +997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f46cd5e04bd24a4dba8240bb3bc9a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offscreenBuffer: 0
   minTimer: 4
   maxTimer: 8
 --- !u!114 &891607043
@@ -1753,6 +1754,7 @@ GameObject:
   - 61: {fileID: 1532710358}
   - 114: {fileID: 1532710357}
   - 114: {fileID: 1532710356}
+  - 114: {fileID: 1532710361}
   m_Layer: 0
   m_Name: HomeCity
   m_TagString: Player
@@ -1838,6 +1840,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 23
+--- !u!114 &1532710361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1532710355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874d53722570d2b46aab45cdaa858a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingCityLevel: 1
 --- !u!1 &1563068258
 GameObject:
   m_ObjectHideFlags: 0
