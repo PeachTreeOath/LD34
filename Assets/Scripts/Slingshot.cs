@@ -51,6 +51,8 @@ public class Slingshot : MonoBehaviour {
                 dragging = true;
                 if (hit)
                 {
+					Camera.main.gameObject.GetComponent<DragCamera>().enabled = false;
+					Debug.Log(Time.time +" disable drag ");
                     active = true;
                     onDragStart(mousePos);
                 }
@@ -62,6 +64,9 @@ public class Slingshot : MonoBehaviour {
             dragging = false;
             if (active)
             {
+				Debug.Log(Time.time +" enable drag ");
+				Camera.main.gameObject.GetComponent<DragCamera>().enabled = true;
+				Camera.main.gameObject.GetComponent<DragCamera>().OnMouseDown(Input.mousePosition);
                 active = false;
                 onDragEnd(mousePos);
             }

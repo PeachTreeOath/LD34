@@ -9,9 +9,11 @@ public class ProductionManagerUI : MonoBehaviour {
 	public List<string> goods;
 	Camera mainCam;
 	List<Slider> sliders;
+	bool disabledDrag;
 
 	// Use this for initialization
 	void Start () {
+		disabledDrag = false;
 		mainCam = GameObject.Find("Main Camera").GetComponent<Camera>();
 
 		BuildUI();
@@ -61,6 +63,8 @@ public class ProductionManagerUI : MonoBehaviour {
 			if(Globals.gameState.productionRates[i] != sliders[i].value)
 			{
 				moved = true;
+				Debug.Log(Time.time +" disable drag2  ");
+				disabledDrag = true;
 				Camera.main.GetComponent<DragCamera>().enabled = false;
 				float sum = 0;
 				for(int j = 0; j < sliders.Count; j++)
@@ -86,8 +90,10 @@ public class ProductionManagerUI : MonoBehaviour {
 		}
 		if(!moved)
 		{
-			if(!Camera.main.GetComponent<DragCamera>().enabled)
+			if(disabledDrag)
 			{
+				Debug.Log(Time.time +" enable drag2 ");
+				disabledDrag = false;
 				Camera.main.GetComponent<DragCamera>().enabled = true;
 				Camera.main.GetComponent<DragCamera>().OnMouseDown(Input.mousePosition);
 			}
