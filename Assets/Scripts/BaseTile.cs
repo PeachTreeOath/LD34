@@ -21,14 +21,16 @@ public class BaseTile : MonoBehaviour {
 			transform.localScale = new Vector3 (scale, scale, 1);
 			scale += vel * Time.deltaTime;	
 			vel -= accel * Time.deltaTime;
-			if (scale < 1) {
+			if (scale > 1.05) {
 				if (increasing) {
 					increasing = !increasing;
 				}
 			} else {
-				if (!increasing) {
-					transform.localScale = new Vector3 (1, 1, 1);
-					isAnimating = false;
+				if (scale < 1) {
+					if (!increasing) {
+						transform.localScale = new Vector3 (1, 1, 1);
+						isAnimating = false;
+					}
 				}
 			}
 		}
