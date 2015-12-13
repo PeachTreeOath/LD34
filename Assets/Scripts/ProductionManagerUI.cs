@@ -49,13 +49,14 @@ public class ProductionManagerUI : MonoBehaviour {
 		}
 
 		GameObject textTitle = Instantiate(textFab);
-		textTitle.GetComponent<Text>().text = "Production Rates";
+		textTitle.GetComponent<Text>().text = "Set Production Rates";
 		textTitle.GetComponent<Text>().raycastTarget = false;
 		textTitle.transform.SetParent(canvas.transform, false);
+		textTitle.AddComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
 
 		RectTransform sxform2 = sliders[0].GetComponent<RectTransform>();
 		RectTransform txform2 = textTitle.GetComponent<RectTransform>();
-		txform2.transform.position = sxform2.position + new Vector3(0, sxform2.rect.height/2 + txform2.rect.height/2 + 5, 0);
+		txform2.transform.position = sxform2.position + new Vector3(-30, sxform2.rect.height/2 + txform2.rect.height/2 + 5, 0);
 	}
 	
 	// Update is called once per frame
