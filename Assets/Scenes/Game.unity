@@ -612,6 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e0dfd1c3ae425499fa2ddba6d328a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyParent: {fileID: 884931275}
   orderedMoneyPrefabs:
   - {fileID: 155134, guid: 7428ee2064c64c14597616db608bd863, type: 2}
   - {fileID: 195322, guid: abb311f6d83d9ec45a6bee4d98126d83, type: 2}
@@ -1039,6 +1040,33 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &884931275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 884931276}
+  m_Layer: 0
+  m_Name: MoneyParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &884931276
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 884931275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.72877425, y: 0.112336606, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
 --- !u!1 &910415148
 GameObject:
   m_ObjectHideFlags: 0

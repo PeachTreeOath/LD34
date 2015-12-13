@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class MoneyMaker : MonoBehaviour {
 
+    public GameObject moneyParent; //container
+
     //List of prefabs for money pictures in order from smallest to largest
     public List<GameObject> orderedMoneyPrefabs;
 
@@ -36,26 +38,24 @@ public class MoneyMaker : MonoBehaviour {
         float newMoney = Globals.gameState.money - lastMoneyUpdate;
 
         if(newMoney >= moneyUpdateThresh) {
-            Debug.Log("Adding money: " + newMoney); 
+            //Debug.Log("Adding money: " + newMoney); 
             float remain = addAmt(newMoney);
-            lastMoneyUpdate = newMoney - remain;
+            lastMoneyUpdate += newMoney - remain;
+            consolidate();
         }
-        consolidate();
 	}
 
     //updates bins and returns the remainder that didn't fit in the lowest bin 
     private float addAmt(float amt) {
         float workingAmt = amt;
-        for(int i = orderedMoney.Count-1; i >= 0; i--) {
-            while(workingAmt >= orderedMoney[i].value) {
-                numDisplayed[i]++;
-                workingAmt -= orderedMoney[i].value;
-                if(orderedMoney[i].value <= 0) {
-                    Debug.LogError("VALUE LESS THAN ZERO, i="+i);
-                    break;
-                }
-            }
-        }
+        int i = 0;
+        int bundles = (int) (workingAmt / orderedMoney[i].value);
+        numDisplayed[i] += bundles;
+        workingAmt = workingAmt - (bundles * orderedMoney[i].value);
+        //this is pretty hacky, we will add on new icons here for the lowest amount
+        //which will stick around until they need to be consolidated
+        //Otherwise these would not get displayed
+        addToDisplay(orderedMoneyPrefabs[0], bundles);
         return workingAmt;
     }
 
@@ -63,18 +63,24 @@ public class MoneyMaker : MonoBehaviour {
     private void consolidate() {
         bool changed = false;
         for(int i = 0; i < orderedMoney.Count-1; i++) {
-            float myVal = orderedMoney[i].value;
-            float nextVal = orderedMoney[i + 1].value;
-            while(numDisplayed[i] * myVal > nextVal) {
+            float myFact = orderedMoney[i].value;
+            float nextFact = orderedMoney[i + 1].value;
+
+            float myVal = numDisplayed[i] * myFact;
+            int upgradeBundles = (int) (myVal / nextFact);
+            float myRemain = myVal - (upgradeBundles * nextFact); //should be an even amount for this bin but clamp it anyways
+            int myNewBundles = (int)(myRemain / myFact);
+            if(upgradeBundles > 0) {
                 changed = true;
                 //move a bundle from current bin to next bin
-                numDisplayed[i + 1]++;
-                numDisplayed[i]--;
+                numDisplayed[i] = myNewBundles;
+                numDisplayed[i + 1] += upgradeBundles;
             }
         }
         if(changed) {
             display();
-        }
+        } 
+
     }
 
     private void display() {
@@ -92,10 +98,19 @@ public class MoneyMaker : MonoBehaviour {
         }
     }
 
+    //Adds some stacks without redrawing everything.  Useful if you know the 
+    //new stacks will be in front already.
+    private void addToDisplay(GameObject prefab, int numToAdd) {
+        for(int i = 0; i < numToAdd; i++) {
+            place(prefab);
+        }
+    }
+
     private void place(GameObject prefab) {
-        Debug.Log("Drawing money prefab: " + prefab.name);
+        //Debug.Log("Drawing money prefab: " + prefab.name);
         //this could be slow //TODO use object pool
         GameObject go = Instantiate(prefab);
+        go.transform.parent = moneyParent.transform;
         float xLim = go.transform.position.x;
         float newX = Random.Range(xLim - 1, xLim);
         float yLim = go.transform.position.y;
