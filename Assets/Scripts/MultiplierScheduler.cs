@@ -117,7 +117,7 @@ public class MultiplierScheduler : MonoBehaviour {
 					DestroyImmediate(multObjs[i].GetComponent<Blinking>());
 					multObjs[i].GetComponent<Renderer>().enabled = false;
 					multObjs[i].GetComponent<Multiplier>().multiplier = 0;
-					dying[indices[i]] = false;
+					dying[i] = false;
 					spawnTimers[i] = Time.time;
 					spawnTimes[i] = getSpawnTime();
 					Debug.Log(Time.time + " killed multiplier");
@@ -139,5 +139,25 @@ public class MultiplierScheduler : MonoBehaviour {
 	float getDeathTime()
 	{
 		return Random.Range(minDeathTime, maxDeathTime);
+	}
+
+	public void HitMultiplier(GameObject mult)
+	{
+		for(int i = 0; i < spawned.Count; i++)
+		{
+			if(multObjs[i].GetInstanceID() == mult.GetInstanceID())
+			{
+				spawned[i] = false;
+				spawnCount--;
+				DestroyImmediate(multObjs[i].GetComponent<Blinking>());
+				multObjs[i].GetComponent<Renderer>().enabled = false;
+				multObjs[i].GetComponent<Multiplier>().multiplier = 0;
+				dying[i] = false;
+				spawnTimers[i] = Time.time;
+				spawnTimes[i] = getSpawnTime();
+				Debug.Log(Time.time + " hit multiplier");
+				break;
+			}
+		}
 	}
 }

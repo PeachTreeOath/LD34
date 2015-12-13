@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class EnconomyUI : MonoBehaviour {
 
@@ -48,7 +49,7 @@ public class EnconomyUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		moneyValue.GetComponent<Text>().text = Globals.gameState.money + "";  //money maker will handle money display in depth, we can combine these if it doesnt get too ugly
+		moneyValue.GetComponent<Text>().text = String.Format("{0:0.00}", Globals.gameState.money) + "";  //money maker will handle money display in depth, we can combine these if it doesnt get too ugly
 		popValue.GetComponent<Text>().text = Globals.gameState.population + "";
 	}
 }

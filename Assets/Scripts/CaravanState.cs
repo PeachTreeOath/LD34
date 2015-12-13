@@ -6,7 +6,7 @@ public class CaravanState : MonoBehaviour {
 	public Globals.GoodTypeEnum goodType = Globals.GoodTypeEnum.CORN;
     public float baseValue = 0;
 	public float value = 5;
-	public float multiplier = 1;
+	public float multiplier = 0;
     public float dollarsPerDistance = 100;
 
     private Vector3 prevPos;
@@ -49,7 +49,7 @@ public class CaravanState : MonoBehaviour {
 		{
 			Debug.Log(Time.time + " caravan hit mult " + col.gameObject.GetComponent<Multiplier>().multiplier + " was " + multiplier);
 			multiplier += col.gameObject.GetComponent<Multiplier>().multiplier - 1;
-            Destroy(col.gameObject);
+			Camera.main.gameObject.GetComponent<MultiplierScheduler>().HitMultiplier(col.gameObject);
 		}
 	}
 }
