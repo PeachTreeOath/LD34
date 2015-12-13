@@ -34,4 +34,8 @@ public class BaseTile : MonoBehaviour {
 		}
 	}
 
+	public void SkipAnimation()
+	{
+		isAnimating = false;
+	}
 }

@@ -40,6 +40,7 @@ public class ProductionManagerUI : MonoBehaviour {
 			sxform.position = (new Vector3(canvasXfrom.rect.width/2, sxform.rect.height * (goods.Count + 1 - i) * 1.2f, 0));
 			sliders.Add(slider.GetComponent<Slider>());
 			Globals.gameState.productionRates.Add(slider.GetComponent<Slider>().value);
+			Globals.gameState.productionCounts.Add(0);
 			RectTransform txform = text.GetComponent<RectTransform>();
 			txform.transform.position = sxform.position + new Vector3(-sxform.rect.width/1.85f, 0, 0);
 		}
