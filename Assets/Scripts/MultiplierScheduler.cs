@@ -75,7 +75,7 @@ public class MultiplierScheduler : MonoBehaviour {
 
 					multObjs[indices[i]].GetComponent<Renderer>().enabled = true;
 					multObjs[indices[i]].GetComponent<Multiplier>().multiplier = multChance[Random.Range(0, multChance.Length)];
-					Debug.Log(Time.time + " spawning mult " + multObjs[indices[i]].GetComponent<Multiplier>().multiplier);
+					//Debug.Log(Time.time + " spawning mult " + multObjs[indices[i]].GetComponent<Multiplier>().multiplier);
 					multObjs[indices[i]].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/mult"+((int)multObjs[indices[i]].GetComponent<Multiplier>().multiplier));
 
 					lifeTimers[indices[i]] = Time.time;
@@ -94,7 +94,7 @@ public class MultiplierScheduler : MonoBehaviour {
 						}
 					}
 
-					Debug.Log(Time.time + " spawned multiplier");
+					//Debug.Log(Time.time + " spawned multiplier");
 				}
 			}
 
@@ -107,7 +107,7 @@ public class MultiplierScheduler : MonoBehaviour {
 					deathTimers[i] = Time.time;
 					deathTimes[i] = getDeathTime();
 					multObjs[i].AddComponent<Blinking>().blinkDelay = .3f;
-					Debug.Log(Time.time + " killing multiplier");
+					//Debug.Log(Time.time + " killing multiplier");
 				}
 				if(dying[i] &&
 					Time.time - deathTimers[i] > deathTimes[i])
@@ -120,7 +120,7 @@ public class MultiplierScheduler : MonoBehaviour {
 					dying[i] = false;
 					spawnTimers[i] = Time.time;
 					spawnTimes[i] = getSpawnTime();
-					Debug.Log(Time.time + " killed multiplier");
+					//Debug.Log(Time.time + " killed multiplier");
 				}
 			}
 		}
@@ -162,7 +162,7 @@ public class MultiplierScheduler : MonoBehaviour {
 				dying[i] = false;
 				spawnTimers[i] = Time.time;
 				spawnTimes[i] = getSpawnTime();
-				Debug.Log(Time.time + " hit multiplier");
+				//Debug.Log(Time.time + " hit multiplier");
 				break;
 			}
 		}

@@ -5,6 +5,7 @@ public class MainCityProgress : MonoBehaviour {
 
 	GameObject progressBar;
 	Renderer rend;
+	CityGrowth cityGrowth;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +14,7 @@ public class MainCityProgress : MonoBehaviour {
 		rend = progressBar.GetComponent<Renderer>();
 		rend.material.SetFloat("_Progress", 0);
 		progressBar.transform.position = Globals.playerCity.transform.position + Vector3.down * 1.2f + Vector3.back;
+		cityGrowth = GetComponent<CityGrowth> ();
 	}
 	
 	// Update is called once per frame
@@ -25,7 +27,9 @@ public class MainCityProgress : MonoBehaviour {
 	{
 		if(Globals.gameState.money >= LevelUpSchedule.schedule[Application.loadedLevel, Globals.gameState.cityProgress])
 		{
+			Debug.Log ("PROGRESS");
 			Globals.gameState.cityProgress++;
+			cityGrowth.LevelUp (5, false);
 			if(Globals.gameState.cityProgress == Globals.cityTierCount)
 			{
 				Destroy(this);
