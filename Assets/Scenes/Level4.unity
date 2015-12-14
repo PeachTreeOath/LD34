@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 1
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 25
+  baseSpawnDelay: 30
 --- !u!4 &904050268
 Transform:
   m_ObjectHideFlags: 0
@@ -1627,7 +1627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac05b36d5e6ec44f807f4ec3ba004ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragThresh: 0.2
+  dragThresh: 0.15
 --- !u!4 &1112093955
 Transform:
   m_ObjectHideFlags: 0
@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 2
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 25
+  baseSpawnDelay: 30
 --- !u!4 &1283001423
 Transform:
   m_ObjectHideFlags: 0
@@ -2021,7 +2021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 0
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 25
+  baseSpawnDelay: 30
 --- !u!4 &1367367567
 Transform:
   m_ObjectHideFlags: 0
@@ -2421,7 +2421,7 @@ Transform:
   m_LocalScale: {x: 0.7223607, y: 0.7223607, z: 0.7223607}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
 --- !u!1 &1661864582
 GameObject:
   m_ObjectHideFlags: 0
