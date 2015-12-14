@@ -24,10 +24,10 @@ public class ProductionManagerUI : MonoBehaviour {
 		GameObject textFab = Resources.Load("Prefabs/UI/UIText") as GameObject;
 		GameObject canvas = GameObject.Find("Canvas");
 		RectTransform canvasXfrom = canvas.GetComponent<RectTransform>();
-		GameObject scrollerBG = Instantiate(Resources.Load("Prefabs/UI/ScrollerBG")) as GameObject;
+		/*GameObject scrollerBG = Instantiate(Resources.Load("Prefabs/UI/ScrollerBG")) as GameObject;
 		scrollerBG.transform.SetParent(canvasXfrom, false);
 		scrollerBG.transform.localScale = new Vector3(scrollerBG.transform.localScale.x * 3.5f, scrollerBG.transform.localScale.y, scrollerBG.transform.localScale.z);
-		scrollerBG.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width*.856f, canvasXfrom.rect.height - 70, 0);
+		scrollerBG.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width*.856f, canvasXfrom.rect.height - 70, 0);*/
 
 		for(int i = 0; i < goods.Count; i++)
 		{
