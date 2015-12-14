@@ -20,6 +20,7 @@ public class LevelUpSchedule : MonoBehaviour {
 	void Update () {
 		if(Globals.gameState.cityProgress < Globals.cityTierCount)
 		{
+			Debug.Log(Time.time + " lvl " + Application.loadedLevel + " prog " +  Globals.gameState.cityProgress);
 			Globals.gameState.moneyGoal = schedule[Application.loadedLevel, Globals.gameState.cityProgress];
 		}
 	}

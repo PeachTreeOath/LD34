@@ -10,7 +10,7 @@ public class Globals : MonoBehaviour {
 	public static GameObject bgMusic;
 	public static GameState gameState = null;
 	public static GameObject playerCity;
-	public static int cityTierCount = 5;
+	public static int cityTierCount = 4;
 
 	void Start()
 	{
