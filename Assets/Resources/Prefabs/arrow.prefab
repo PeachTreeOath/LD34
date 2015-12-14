@@ -52,7 +52,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: 251955167
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c2aafe1d69a38a64fb09b2c2b6a84e36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -64,7 +64,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: 251955167
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 111640}
