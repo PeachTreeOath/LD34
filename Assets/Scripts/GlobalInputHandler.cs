@@ -7,7 +7,7 @@ public class GlobalInputHandler : MonoBehaviour {
 
 	public static Collider2D[] hitInfos;
 	public static bool hitSomething;
-    public float dragThresh = 0.25f; //time before drag happens when holding click in seconds
+    public float dragThresh = 0.0001f; //time before drag happens when holding click in seconds
     private bool but0Down = false;
     private float time0Down = 0;
     private Vector3 origDownLoc = Vector3.zero;

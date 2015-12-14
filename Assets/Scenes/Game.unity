@@ -773,7 +773,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 543503947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48e0dfd1c3ae425499fa2ddba6d328a6, type: 3}
   m_Name: 
@@ -2118,7 +2118,7 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
   m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
+  m_InputActionsPerSecond: 60
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
 --- !u!114 &2093314144
@@ -2134,7 +2134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
-  m_DragThreshold: 5
+  m_DragThreshold: 1
 --- !u!4 &2093314145
 Transform:
   m_ObjectHideFlags: 0
