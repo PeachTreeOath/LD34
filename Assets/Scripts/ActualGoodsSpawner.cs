@@ -16,8 +16,9 @@ public class ActualGoodsSpawner : MonoBehaviour {
 
 	public void UpdateSpawnTimer()
 	{
-		float minPop = Mathf.Max(1, Globals.gameState.population);
-		goodsSpawnTime = Mathf.Max(0, baseSpawnDelay - Globals.gameState.productionRates[(int)goodType] * (Globals.gameState.money/minPop));
+		float minMon = Mathf.Max(1, Globals.gameState.money);
+		goodsSpawnTime = Mathf.Max(0, baseSpawnDelay - Globals.gameState.productionRates[(int)goodType] * (Globals.gameState.population/minMon));
+		spawnTime = goodsSpawnTime;
 	}
 
 	void Start () {
@@ -27,15 +28,8 @@ public class ActualGoodsSpawner : MonoBehaviour {
 		countText = go.GetComponent<TextMesh>();
 		countText.anchor = TextAnchor.MiddleLeft;
 		countText.transform.position = gameObject.transform.position + Vector3.right * .5f;
-		goodsSpawnTime = Mathf.Max(0, baseSpawnDelay - Globals.gameState.population * Globals.gameState.productionRates[(int)goodType]);
-		spawnTime = goodsSpawnTime;
+		UpdateSpawnTimer();
 		//Invoke("doSpawn", goodsSpawnTime); //TODO this needs to get way fancier
-
-		go = new GameObject();
-		Text txt = go.AddComponent<Text>();
-		txt.text = "test";
-		txt.font = Resources.Load<Font>("Fonts/calibri");
-		txt.material = Resources.Load<Material>("Fonts/calibri_mat");
     }
 
 	void Update()
@@ -71,10 +65,8 @@ public class ActualGoodsSpawner : MonoBehaviour {
 	        tradeGoodScript.spawner = gameObject;
 		}
 
-		float minPop = Mathf.Max(1, Globals.gameState.population);
-		goodsSpawnTime = Mathf.Max(0, baseSpawnDelay - Globals.gameState.productionRates[(int)goodType] * (Globals.gameState.money/minPop));
+		UpdateSpawnTimer();
 		spawnTimer = Time.time;
-		spawnTime = goodsSpawnTime;
 		//Invoke("doSpawn", goodsSpawnTime);
     }
 	

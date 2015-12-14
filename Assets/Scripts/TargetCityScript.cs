@@ -15,9 +15,11 @@ public class TargetCityScript : MonoBehaviour
     int crashCount;
     int curCrashCount;
 
+	GameObject [] goodSpawners;
     // Use this for initialization
     void Start()
     {
+		goodSpawners = GameObject.FindGameObjectsWithTag("TradeGoodSpawner");
         curCrashCount = 0;
         crashCount = Random.Range(crashCountMin, crashCountMax);
 
@@ -62,6 +64,11 @@ public class TargetCityScript : MonoBehaviour
                     EconomySimulator econSim = camGameObject.GetComponent<EconomySimulator>();
                     econSim.UpdateDesiredGood(gameObject);
                 }
+
+				for(int k = 0; k < goodSpawners.Length; k++)
+				{
+					goodSpawners[k].GetComponent<ActualGoodsSpawner>().UpdateSpawnTimer();
+				}
             }
 
             Destroy(col.gameObject);
