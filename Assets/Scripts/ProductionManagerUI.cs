@@ -8,10 +8,12 @@ public class ProductionManagerUI : MonoBehaviour {
 
 	public List<string> goods;
 	List<Slider> sliders;
-    private GlobalInputHandler GIH; 
+    private GlobalInputHandler GIH;
+	GameObject [] goodSpawners;
 
 	// Use this for initialization
 	void Start () {
+		goodSpawners = GameObject.FindGameObjectsWithTag("TradeGoodSpawner");
         GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
 		BuildUI();
 	}
@@ -67,6 +69,12 @@ public class ProductionManagerUI : MonoBehaviour {
 		{
 			if(Globals.gameState.productionRates[i] != sliders[i].value)
 			{
+				//ebug.Log(Time.time + " Value changed");
+				for(int k = 0; k < goodSpawners.Length; k++)
+				{
+					goodSpawners[k].GetComponent<ActualGoodsSpawner>().UpdateSpawnTimer();
+				}
+
 				float sum = 0;
 				for(int j = 0; j < sliders.Count; j++)
 				{
@@ -97,7 +105,7 @@ public class ProductionManagerUI : MonoBehaviour {
     }
 
     bool onDrag(Vector3 pos) {
-        Debug.Log("Prod onDrag");
+		Debug.Log(Time.time + " Prod onDrag");
         return true; //intercept drags over the control
     }
 

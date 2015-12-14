@@ -128,6 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredGood: 2
+  crashCountMin: 1
+  crashCountMax: 8
 --- !u!61 &10144830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -317,6 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredGood: 0
+  crashCountMin: 1
+  crashCountMax: 8
 --- !u!61 &128115160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -416,6 +420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredGood: 2
+  crashCountMin: 1
+  crashCountMax: 8
 --- !u!61 &225525965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -863,7 +869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 0
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 20
+  baseSpawnDelay: 15
 --- !u!4 &740888332
 Transform:
   m_ObjectHideFlags: 0
@@ -1273,6 +1279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredGood: 2
+  crashCountMin: 1
+  crashCountMax: 8
 --- !u!61 &989487520
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1822,7 +1830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 1
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 20
+  baseSpawnDelay: 15
 --- !u!4 &1194725735
 Transform:
   m_ObjectHideFlags: 0
@@ -2521,6 +2529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredGood: 2
+  crashCountMin: 1
+  crashCountMax: 8
 --- !u!61 &1630257212
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2950,7 +2960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 2
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 20
+  baseSpawnDelay: 15
 --- !u!4 &1964357076
 Transform:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ TagManager:
   - City
   - Trade Good
   - Background
+  - TradeGoodSpawner
   layers:
   - Default
   - TransparentFX

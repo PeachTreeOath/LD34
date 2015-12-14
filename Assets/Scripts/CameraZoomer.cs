@@ -18,7 +18,7 @@ public class CameraZoomer : MonoBehaviour {
         float currSize = Camera.main.orthographicSize;
         float delta = Input.GetAxis("Mouse ScrollWheel");
 
-        Debug.Log("delta: " + delta);
+//        Debug.Log("delta: " + delta);
 
         float newSize = Mathf.Clamp(currSize + delta * -zoomSpeed, minSize, maxSize);
 

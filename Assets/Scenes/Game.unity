@@ -681,6 +681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredGood: 0
+  crashCountMin: 1
+  crashCountMax: 8
 --- !u!61 &391553433
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1534,6 +1536,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desiredGood: 2
+  crashCountMin: 1
+  crashCountMax: 8
 --- !u!61 &1070598990
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1631,7 +1635,7 @@ GameObject:
   - 114: {fileID: 1391044030}
   m_Layer: 0
   m_Name: TradeGoodSpawner (2)
-  m_TagString: Untagged
+  m_TagString: TradeGoodSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1649,7 +1653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 2
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 20
+  baseSpawnDelay: 13
 --- !u!4 &1391044031
 Transform:
   m_ObjectHideFlags: 0
@@ -1673,7 +1677,7 @@ GameObject:
   - 114: {fileID: 1397644021}
   m_Layer: 0
   m_Name: TradeGoodSpawner (1)
-  m_TagString: Untagged
+  m_TagString: TradeGoodSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1691,7 +1695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 1
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 20
+  baseSpawnDelay: 13
 --- !u!4 &1397644022
 Transform:
   m_ObjectHideFlags: 0
@@ -1715,7 +1719,7 @@ GameObject:
   - 114: {fileID: 1411990252}
   m_Layer: 0
   m_Name: TradeGoodSpawner
-  m_TagString: Untagged
+  m_TagString: TradeGoodSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1733,7 +1737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goodType: 0
   tradeGoodPrefab: {fileID: 125734, guid: 2d4421bb80dd6754da55ce4eda906de9, type: 2}
-  baseSpawnDelay: 20
+  baseSpawnDelay: 13
 --- !u!4 &1411990253
 Transform:
   m_ObjectHideFlags: 0

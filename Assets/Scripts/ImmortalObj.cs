@@ -132,7 +132,7 @@ public class ImmortalObj : MonoBehaviour {
 
     private void doPlayFiller() {
         if(isPlayingMain) {
-            Debug.Log("Main playing still");
+//            Debug.Log("Main playing still");
             return;
         }
         if(isPlayingFiller) {
