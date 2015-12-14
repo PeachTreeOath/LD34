@@ -38,7 +38,6 @@ public class ImmortalObj : MonoBehaviour {
     // any other methods you need
 	// Use this for initialization
 	void Start () {
-        GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
 	}
 	
 	// Update is called once per frame
@@ -62,11 +61,17 @@ public class ImmortalObj : MonoBehaviour {
     }
 
     public void restart() {
+        GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
         if(muteBut != null) {
             GIH.cancelClickReg(muteBut);
             muteBut = null;
         }
         muteBut = GameObject.Find("soundbut"); 
+        if(isMute) {
+            muteBut.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/sfx_off");
+        } else {
+            muteBut.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/sfx_on");
+        }
         GIH.registerForClick(muteBut, doMute);
         timeMainPlayed = 0;
         timeFillerPlayed = 0;
@@ -110,6 +115,7 @@ public class ImmortalObj : MonoBehaviour {
 
  
      public bool doMute(Vector3 pos){
+        Debug.Log("Mute clicked");
         if(isMute) {
             //muted -> sounded
             AudioListener.volume = 1;
