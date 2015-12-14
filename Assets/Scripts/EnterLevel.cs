@@ -9,31 +9,11 @@ public class EnterLevel : MonoBehaviour {
 	List<Vector3> startScales;
 	List<Vector3> endScales;
 	float startTime;
-    private AudioSource mainMusic;
-    private AudioSource fillerMusic;
-    private float timeFillerPlayed = 0;
-    private float timeMainPlayed = 0;
-    private bool isPlayingMain = false;
-    private bool donePlayingMain = false;
-    private bool isPlayingFiller = false;
-    private bool donePlayingFiller = false;
+    bool musicStarted = false;
 
 	// Use this for initialization
 	void Start () {
-        mainMusic = GameObject.Find("IntroMusic").GetComponent<AudioSource>();
-        if(mainMusic == null) {
-            Debug.LogError("Failed to load main music :<");
-        }
-        fillerMusic = GameObject.Find("FillerMusic").GetComponent<AudioSource>();
-        if(fillerMusic == null) {
-            Debug.LogError("Failed to load filler music :<");
-        }
-        timeMainPlayed = 0;
-        timeFillerPlayed = 0;
-        isPlayingFiller = false;
-        isPlayingMain = false;
-        donePlayingMain = false;
-        donePlayingFiller = false;
+        musicStarted = false;
 		startTime = Time.deltaTime;
 		startScales = new List<Vector3>();
 		endScales = new List<Vector3>();
@@ -55,9 +35,11 @@ public class EnterLevel : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if(!musicStarted) {
+            musicStarted = true;
+            ImmortalObj.Instance.doRun();
+        }
 		startTime += Time.deltaTime;
-        doPlayMain();
-        doPlayFiller();
 		for(int i = 0; i < allObjs.Length; i++)
 		{
 			GameObject g = (GameObject) allObjs[i];
@@ -82,47 +64,4 @@ public class EnterLevel : MonoBehaviour {
 		}
 	}
 
-    private void doPlayMain() {
-        if(isPlayingMain) {
-            timeMainPlayed += Time.deltaTime;
-            if(timeMainPlayed >= mainMusic.clip.length) {
-                isPlayingMain = false;
-                donePlayingMain = true;
-            }
-        } else {
-            //not playing...are we done or do we need to start?
-            if (!donePlayingMain) {
-                //not playing and not started...we need to start
-                fillerMusic.Stop();
-                timeMainPlayed = 0;
-                isPlayingMain = true;
-                mainMusic.PlayOneShot(mainMusic.clip, 1);
-            } else {
-                //not playing and done...nothing to do
-            }
-        }
-    }
-
-    private void doPlayFiller() {
-        if(isPlayingMain) {
-            return;
-        }
-        if(isPlayingFiller) {
-            timeFillerPlayed += Time.deltaTime;
-            if(timeFillerPlayed >= fillerMusic.clip.length) {
-                isPlayingFiller = false;
-                donePlayingFiller = true;
-            }
-        } else {
-            //not playing...are we done or do we need to start?
-            if (!donePlayingFiller) {
-                //not playing and not started...we need to start
-                timeFillerPlayed = 0;
-                isPlayingFiller = true;
-                fillerMusic.PlayOneShot(fillerMusic.clip, 1);
-            } else {
-                //not playing and done...nothing to do
-            }
-        }
-    }
 }
