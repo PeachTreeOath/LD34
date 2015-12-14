@@ -879,10 +879,6 @@ GUIText:
     rgba: 4294967295
   m_PixelCorrect: 1
   m_RichText: 1
---- !u!1 &623512654 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 116660, guid: d9ccd78727ed570478728779c2de8150, type: 2}
-  m_PrefabInternal: {fileID: 2144475358}
 --- !u!4 &623512655 stripped
 Transform:
   m_PrefabParentObject: {fileID: 460560, guid: d9ccd78727ed570478728779c2de8150, type: 2}
@@ -1919,7 +1915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2e5c7d0f3733141a5832c27c209921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muteBut: {fileID: 623512654}
 --- !u!4 &1656559813
 Transform:
   m_ObjectHideFlags: 0
