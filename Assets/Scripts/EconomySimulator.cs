@@ -48,12 +48,7 @@ public class EconomySimulator : MonoBehaviour {
 		{
 			if(Time.time - timers[i] > times[i])
 			{
-				timers[i] = Time.time;
-				times[i] = (Random.Range(minTimer, maxTimer));
-				cities[i].GetComponent<TargetCityScript>().desiredGood = (Globals.GoodTypeEnum)Random.Range(0, (int)Globals.GoodTypeEnum.LAST);
-				string iconName = cities[i].GetComponent<TargetCityScript>().desiredGood.ToString().ToLower();
-				iconName = iconName.Substring(0, 1).ToUpper() + iconName.Substring(1);
-				icons[i].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/Trade Goods/"+iconName);
+
 			}
 			Vector3 desiredPos = cities[i].transform.position + Vector3.up * ((cities[i].GetComponent<Renderer>().bounds.extents.y + icons[i].GetComponent<Renderer>().bounds.extents.y) * 1.15f) + Vector3.back;
             Vector3 bestPos = getOnscreenPos(desiredPos);
@@ -67,6 +62,23 @@ public class EconomySimulator : MonoBehaviour {
             icons[i].transform.position = bestPos;
 		}
 	}
+
+    public void UpdateDesiredGood(GameObject gameObject)
+    {
+        int index = 0;
+        foreach (var city in cities)
+        {
+            if(gameObject.GetInstanceID() == city.GetInstanceID() )
+            {
+                city.GetComponent<TargetCityScript>().desiredGood = (Globals.GoodTypeEnum)Random.Range(0, (int)Globals.GoodTypeEnum.LAST);
+                string iconName = city.GetComponent<TargetCityScript>().desiredGood.ToString().ToLower();
+                iconName = iconName.Substring(0, 1).ToUpper() + iconName.Substring(1);
+                icons[index].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Textures/Trade Goods/" + iconName);
+            }
+            index++;
+        }
+
+    }
 
     //Get the closest on screen point to desiredPos
     private Vector3 getOnscreenPos(Vector3 desiredPos) {
