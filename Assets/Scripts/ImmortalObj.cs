@@ -64,6 +64,7 @@ public class ImmortalObj : MonoBehaviour {
     public void restart() {
         if(muteBut != null) {
             GIH.cancelClickReg(muteBut);
+            muteBut = null;
         }
         muteBut = GameObject.Find("soundbut"); 
         GIH.registerForClick(muteBut, doMute);
