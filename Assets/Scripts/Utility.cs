@@ -19,7 +19,7 @@ public class Utility : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update()
-	{/*
+	{
 		hitHoverEnter = false;
 		hitHoverExit = false;
 
@@ -51,7 +51,7 @@ public class Utility : MonoBehaviour {
 				hitHoverExit = true;
 			}
 			hitHovering = false;
-		}*/
+		}
 	}
 
 	void LateUpdate()
