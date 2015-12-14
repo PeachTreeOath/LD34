@@ -19,6 +19,7 @@ public class ImmortalObj : MonoBehaviour {
 	     DontDestroyOnLoad(this.gameObject);
     }
 
+    bool isMute = false;
     private float timeFillerPlayed = 0;
     private float timeMainPlayed = 0;
     private bool isPlayingMain = false;
@@ -97,13 +98,11 @@ public class ImmortalObj : MonoBehaviour {
         }
     }
 
-//    private void setDonePlayingMain() {
-//        donePlayingMain = true;
-//    }
-
-//    private void setDonePlayingFiller() {
-//        donePlayingFiller = true;
-//    }
+ 
+     public void Mute (){
+         isMute = !isMute;
+	     AudioListener.volume =  isMute ? 0 : 1;
+	 }
 
     private void doPlayFiller() {
         if(isPlayingMain) {
