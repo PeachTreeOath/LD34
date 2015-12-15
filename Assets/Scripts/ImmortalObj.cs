@@ -55,6 +55,7 @@ public class ImmortalObj : MonoBehaviour {
     }
 
     public void stop() {
+        //comment
         running = false;
         if(mainMusic != null) { mainMusic.Stop(); }
         if(fillerMusic != null) { fillerMusic.Stop(); }
