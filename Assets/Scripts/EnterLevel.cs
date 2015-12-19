@@ -37,6 +37,11 @@ public class EnterLevel : MonoBehaviour {
 	void Update () {
         if(!musicStarted) {
             musicStarted = true;
+            //If you get a null object reference error here it's probably because you didn't load the first scene.
+            //Currently only the first scene sets up the ImmortalObj
+            if(ImmortalObj.Instance == null) {
+                Debug.LogError("ImmortalObj uninitialized.  Did you start the game from scene 1?");
+            }
             ImmortalObj.Instance.doRun();
         }
 		startTime += Time.deltaTime;
