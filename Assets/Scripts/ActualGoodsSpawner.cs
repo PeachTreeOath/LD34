@@ -69,6 +69,10 @@ public class ActualGoodsSpawner : MonoBehaviour {
 		spawnTimer = Time.time;
 		//Invoke("doSpawn", goodsSpawnTime);
     }
+
+    public void debugSpawnImmediate() {
+        doSpawn();
+    }
 	
     void onGoodConsumed()
     {

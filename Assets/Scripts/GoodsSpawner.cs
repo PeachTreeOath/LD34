@@ -31,12 +31,19 @@ public class GoodsSpawner: MonoBehaviour {
 
     //Called when it is time to spawn some peeps
     private void doSpawn() {
+        create();
+        scheduleSpawnPeeps(delayBetweenSpawnSec);
+    }
+
+    private void create() {
         for(int i = 0; i < numToSpawn; i++) {
             Vector3 pos = locMan.getPersonSpawnLoc();
             GameObject go = Instantiate(personPrefab, pos, Quaternion.identity) as GameObject;
         }
-        scheduleSpawnPeeps(delayBetweenSpawnSec);
+    }
 
+    public void debugSpawnImmediate() {
+        create();
     }
 
 }

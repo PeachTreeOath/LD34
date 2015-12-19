@@ -8,6 +8,8 @@ public class ImmortalObj : MonoBehaviour {
 	     get { return instance; }
 	 }
 
+    public bool childrenAreImmortal = true;
+
      void Awake() {
          if (instance != null && instance != this) {
             stop();
@@ -38,6 +40,11 @@ public class ImmortalObj : MonoBehaviour {
     // any other methods you need
 	// Use this for initialization
 	void Start () {
+        if(childrenAreImmortal) {
+            //foreach (GameObject go in GetComponentsInChildren<GameObject>()) {
+            //    DontDestroyOnLoad(go);
+           // }
+        }
 	}
 	
 	// Update is called once per frame
