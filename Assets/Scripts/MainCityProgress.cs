@@ -27,7 +27,7 @@ public class MainCityProgress : MonoBehaviour {
 	{
 		if(Globals.gameState.money >= LevelUpSchedule.schedule[Application.loadedLevel, Globals.gameState.cityProgress])
 		{
-			Debug.Log ("PROGRESS");
+			//Debug.Log ("PROGRESS");
 			Globals.gameState.cityProgress++;
 			cityGrowth.LevelUp (5, false);
 			if(Globals.gameState.cityProgress == Globals.cityTierCount)

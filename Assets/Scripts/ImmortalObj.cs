@@ -41,9 +41,11 @@ public class ImmortalObj : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         if(childrenAreImmortal) {
-            //foreach (GameObject go in GetComponentsInChildren<GameObject>()) {
-            //    DontDestroyOnLoad(go);
-           // }
+            foreach (Component go in GetComponentsInChildren<Component>()) {
+                if(go.gameObject.transform.parent == null) {
+                    DontDestroyOnLoad(go);
+                }
+            }
         }
 	}
 	

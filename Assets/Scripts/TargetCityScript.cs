@@ -61,14 +61,14 @@ public class TargetCityScript : MonoBehaviour
                     crashCount = Random.Range(crashCountMin, crashCountMax);
 
                     GameObject camGameObject = Camera.main.gameObject;
-                    EconomySimulator econSim = camGameObject.GetComponent<EconomySimulator>();
+                    EconomySimulator econSim = ImmortalObj.Instance.GetComponent<EconomySimulator>();
                     econSim.UpdateDesiredGood(gameObject);
                 }
 
-				for(int k = 0; k < goodSpawners.Length; k++)
-				{
-					goodSpawners[k].GetComponent<ActualGoodsSpawner>().UpdateSpawnTimer();
-				}
+				//for(int k = 0; k < goodSpawners.Length; k++)
+				//{
+				//	goodSpawners[k].GetComponent<ActualGoodsSpawner>().UpdateSpawnTimer();
+				//}
             }
 
             Destroy(col.gameObject);

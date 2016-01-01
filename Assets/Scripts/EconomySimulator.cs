@@ -15,6 +15,11 @@ public class EconomySimulator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Globals.gameState.maxProdRate = 3;
+        loadGameObjects();
+	}
+
+    private void loadGameObjects() {
 		timers = new List<float>();
 		times = new List<float>();
 		icons = new List<GameObject>();
@@ -40,10 +45,21 @@ public class EconomySimulator : MonoBehaviour {
             }
             icons[i].transform.position = bestPos;
 		}
-	}
+
+    }
 	
+    void OnLevelWasLoaded(int level) {
+        loadGameObjects();
+        Debug.Log("Enconomy loaded new cities for level " + level);
+    }
+
 	// Update is called once per frame
 	void Update () {
+        if(cities[0] == null) {
+            Debug.Log("Aborting update to load new level");
+            return;
+        }
+
 		for(int i = 0; i < times.Count; i++)
 		{
 			if(Time.time - timers[i] > times[i])
@@ -111,7 +127,9 @@ public class EconomySimulator : MonoBehaviour {
         go.transform.parent = startingObj.transform;
         LineRenderer r = go.AddComponent<LineRenderer>();
         r.material = Resources.Load("Materials/lineMat", typeof(Material)) as Material;
-        r.SetColors(Color.black, Color.cyan);
+        r.sortingLayerName = "Icons";
+        r.sortingOrder = -1;
+        r.SetColors(Color.black, Color.black);
         r.SetWidth(0.08F, 0.02F);
         r.SetVertexCount(2);
         r.SetPosition(0, startingObj.transform.position);

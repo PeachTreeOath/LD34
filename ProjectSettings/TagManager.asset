@@ -70,3 +70,6 @@ TagManager:
   - name: Icons
     uniqueID: 2376839599
     locked: 0
+  - name: UIOverlay
+    uniqueID: 1668229479
+    locked: 0

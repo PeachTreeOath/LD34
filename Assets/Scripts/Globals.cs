@@ -12,14 +12,12 @@ public class Globals : MonoBehaviour {
 	public static GameObject playerCity;
 	public static int cityTierCount = 4;
 
-	void Start()
+	void Awake()
 	{
 		playerCity = GameObject.FindGameObjectWithTag("Player");
 		if(gameState == null)
 		{
 			gameState = ScriptableObject.CreateInstance<GameState>();
-			gameState.productionRates = new System.Collections.Generic.List<float>();
-			gameState.productionCounts = new System.Collections.Generic.List<int>();
 		}
 	}
 

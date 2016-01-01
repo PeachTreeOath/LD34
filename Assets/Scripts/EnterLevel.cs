@@ -48,7 +48,7 @@ public class EnterLevel : MonoBehaviour {
 		for(int i = 0; i < allObjs.Length; i++)
 		{
 			GameObject g = (GameObject) allObjs[i];
-			if(!(g.tag.Equals("Background") || g.layer == LayerMask.NameToLayer("UI")))
+			if(g != null && !(g.tag.Equals("Background") || g.layer == LayerMask.NameToLayer("UI")))
 			{
 				//Debug.Log(Time.time + " growing");
 				g.transform.localScale = Vector3.Lerp(startScales[i], endScales[i], startTime * growSpeed);
@@ -60,7 +60,7 @@ public class EnterLevel : MonoBehaviour {
 			for(int i = 0; i < allObjs.Length; i++)
 			{
 				GameObject g = (GameObject) allObjs[i];
-				if(!(g.tag.Equals("Background") || g.layer == LayerMask.NameToLayer("UI")))
+				if(g != null && !(g.tag.Equals("Background") || g.layer == LayerMask.NameToLayer("UI")))
 				{
 					g.transform.localScale = endScales[i];
 				}

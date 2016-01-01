@@ -14,11 +14,18 @@ public class ActualGoodsSpawner : MonoBehaviour {
 	float spawnTimer;
 	float spawnTime;
 
+    private GResource getModel() {
+        return Globals.gameState.getResource(goodType);
+    }
+
 	public void UpdateSpawnTimer()
 	{
 		float minMon = Mathf.Max(1, Globals.gameState.money);
-		goodsSpawnTime = Mathf.Max(0, baseSpawnDelay - Globals.gameState.productionRates[(int)goodType] * (Globals.gameState.population/minMon));
-		spawnTime = goodsSpawnTime;
+        GResource r = getModel();
+        if(r != null) {
+		    goodsSpawnTime = Mathf.Max(0, baseSpawnDelay - r.prodRate * (Globals.gameState.population/minMon));
+		    spawnTime = goodsSpawnTime;
+        }
 	}
 
 	void Start () {
@@ -28,15 +35,19 @@ public class ActualGoodsSpawner : MonoBehaviour {
 		countText = go.GetComponent<TextMesh>();
 		countText.anchor = TextAnchor.MiddleLeft;
 		countText.transform.position = gameObject.transform.position + Vector3.right * .5f;
+        GResource res = ScriptableObject.CreateInstance<GResource>();
+        res.init(goodType, 0, 1);
+        Globals.gameState.addResource(res);
 		UpdateSpawnTimer();
 		//Invoke("doSpawn", goodsSpawnTime); //TODO this needs to get way fancier
     }
 
 	void Update()
 	{
-		if(Globals.gameState.productionCounts[(int)goodType] > 0)
+        UpdateSpawnTimer(); //If this calculation becomes too intense we can update on change only
+		if(getModel().prodCount > 0)
 		{
-			countText.text = "x" + Globals.gameState.productionCounts[(int)goodType];
+            countText.text = "x" + getModel().prodCount;
 		}else
 		{
 			countText.text = "";
@@ -50,10 +61,11 @@ public class ActualGoodsSpawner : MonoBehaviour {
 
     private void doSpawn()
     {
-		Globals.gameState.productionCounts[(int)goodType]++;
-		countText.text = "x" + Globals.gameState.productionCounts[(int)goodType];
-		if(Globals.gameState.productionCounts[(int)goodType] == 1)
-		{
+        GResource r = getModel();
+        r.prodCount++;
+        countText.text = "x" + r.prodCount;
+        
+		if(r.prodCount == 1) {
 	        GameObject tradeGood = Instantiate(tradeGoodPrefab, transform.position, Quaternion.identity) as GameObject;
 			DontDestroyOnLoad(tradeGood);
 			BouncyScaler bs = tradeGood.AddComponent<BouncyScaler>();

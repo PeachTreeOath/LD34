@@ -6,114 +6,81 @@ using UnityEngine.EventSystems;
 
 public class ProductionManagerUI : MonoBehaviour {
 
-	public List<string> goods;
-	List<Slider> sliders;
+	public List<StatBar> sliders; //The order the sliders are added should match the actual layout otherwise the indices will be wrong
     private GlobalInputHandler GIH;
-	GameObject [] goodSpawners;
 
 	// Use this for initialization
 	void Start () {
-		goodSpawners = GameObject.FindGameObjectsWithTag("TradeGoodSpawner");
+        if(sliders == null) {
+            Debug.LogError("No stat bars added in editor");
+        } else {
+            foreach (StatBar s in sliders) {
+                if (s == null) Debug.LogError("Unset StatBar in editor");
+            }
+        }
         GIH = GameObject.Find("GlobalInputHandler").GetComponent<GlobalInputHandler>();
-		BuildUI();
 	}
 
-	void BuildUI()
-	{
-		Globals.gameState.productionRates = new List<float>();
-		sliders = new List<Slider>();
-		GameObject sliderFab = Resources.Load("Prefabs/UI/Slider") as GameObject;
-		GameObject textFab = Resources.Load("Prefabs/UI/UIText") as GameObject;
-		GameObject canvas = GameObject.Find("Canvas");
-		RectTransform canvasXfrom = canvas.GetComponent<RectTransform>();
-		/*GameObject scrollerBG = Instantiate(Resources.Load("Prefabs/UI/ScrollerBG")) as GameObject;
-		scrollerBG.transform.SetParent(canvasXfrom, false);
-		scrollerBG.transform.localScale = new Vector3(scrollerBG.transform.localScale.x * 3.5f, scrollerBG.transform.localScale.y, scrollerBG.transform.localScale.z);
-		scrollerBG.GetComponent<RectTransform>().position = new Vector3(canvasXfrom.rect.width*.856f, canvasXfrom.rect.height - 70, 0);*/
-
-		for(int i = 0; i < goods.Count; i++)
-		{
-			GameObject slider = Instantiate(sliderFab);
-            GIH.registerForDrag(slider, onDrag, onDrag, onDrag);
-            GIH.registerForClick(slider, onClick);
-			GameObject text = Instantiate(textFab);
-			text.GetComponent<Text>().text = goods[i];
-			text.GetComponent<Text>().raycastTarget = false;
-			slider.transform.SetParent(canvas.transform, false);
-
-			text.transform.SetParent(canvas.transform, false);
-
-			RectTransform sxform = slider.GetComponent<RectTransform>();
-			sxform.position = (new Vector3(canvasXfrom.rect.width*.90f, canvasXfrom.rect.height - sxform.rect.height * (i+2.5f) * 1.2f, 0));
-			sliders.Add(slider.GetComponent<Slider>());
-			Globals.gameState.productionRates.Add(slider.GetComponent<Slider>().value);
-			Globals.gameState.productionCounts.Add(0);
-			RectTransform txform = text.GetComponent<RectTransform>();
-			txform.transform.position = sxform.position + new Vector3(-sxform.rect.width/1.85f, 0, 0);
-		}
-
-		GameObject textTitle = Instantiate(textFab);
-		textTitle.GetComponent<Text>().text = "Set Production Rates";
-		textTitle.GetComponent<Text>().raycastTarget = false;
-		textTitle.transform.SetParent(canvas.transform, false);
-		textTitle.AddComponent<ContentSizeFitter>().horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-		RectTransform sxform2 = sliders[0].GetComponent<RectTransform>();
-		RectTransform txform2 = textTitle.GetComponent<RectTransform>();
-		txform2.transform.position = sxform2.position + new Vector3(-30, sxform2.rect.height/2 + txform2.rect.height/2 + 5, 0);
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		for(int i = 0; i < sliders.Count; i++)
 		{
-			if(Globals.gameState.productionRates[i] != sliders[i].value)
+            GResource r = Globals.gameState.getResource(sliders[i].statName);
+            if(r == null) {
+                Debug.Log("No resource for " + sliders[i].statName);
+                continue;
+            }
+			if(r.prodRate != sliders[i].getNumTicks())
 			{
-				//ebug.Log(Time.time + " Value changed");
-				for(int k = 0; k < goodSpawners.Length; k++)
-				{
-					goodSpawners[k].GetComponent<ActualGoodsSpawner>().UpdateSpawnTimer();
-				}
-
-				float sum = 0;
-				for(int j = 0; j < sliders.Count; j++)
-				{
-					sum += sliders[j].value;
-				}
-				if(sum > 1)
-				{
-					float delta = (sum - 1)/(sliders.Count - 1);
-					for(int j = 0; j < sliders.Count; j++)
-					{
-						if(i != j)
-						{
-							sliders[j].value -= delta;
-							if(sliders[j].value < 0)
-							{
-								sliders[j].value = 0;
-							}
-						}
-					}
-				}
+                int sum = getCurrentProdRate();
+                int max = Globals.gameState.maxProdRate;
+                if(sum > max) {
+                    //production for all goods exceeded max; reduce others by 1, round robin
+                    int delta = sum - max;
+                    doReduce(i, delta);
+                }
 			}
 		}
-	}
 
-    bool onClick(Vector3 pos) {
-        Debug.Log("Prod onClick");
-        return true;
-    }
-
-    bool onDrag(Vector3 pos) {
-		Debug.Log(Time.time + " Prod onDrag");
-        return true; //intercept drags over the control
-    }
-
-	void LateUpdate()
-	{
 		for(int i = 0; i < sliders.Count; i++)
 		{
-			Globals.gameState.productionRates[i] = sliders[i].value;
+			Globals.gameState.getResource(sliders[i].statName).prodRate = sliders[i].getNumTicks();
 		}
 	}
+
+    //Get the total prod rate displayed by the UI
+    private int getCurrentProdRate() {
+		int sum = 0;
+		for(int j = 0; j < sliders.Count; j++)
+		{
+            sum += sliders[j].getNumTicks();
+		}
+        return sum;
+    }
+
+    private void doReduce(int workingIdx, int reduceBy) {
+        if(sliders.Count <= 1) {
+            Debug.Log("Tried to reduce a single counter that exceeded max"); //this means your counter is probably misconfigured
+            return;
+        }
+        //round robin reduce by one, excluding the working index
+        int idx = workingIdx + 1;
+        //Debug.Log("Working idx=" + workingIdx);
+        while(reduceBy > 0) {
+            if(idx == workingIdx) {
+                idx++;
+            }
+            idx = idx % sliders.Count;
+            if(sliders[idx].getNumTicks() > 0) {
+                //Debug.Log("Reducing idx=" + idx);
+                sliders[idx].dec();
+            	reduceBy--;
+            } else {
+                //Debug.Log("Skipping empty idx=" + idx);
+            }
+            idx++;
+        }
+            
+    }
+
 }

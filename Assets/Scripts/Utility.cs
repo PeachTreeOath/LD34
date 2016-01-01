@@ -29,7 +29,7 @@ public class Utility : MonoBehaviour {
 			hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 			if(hitInfo.collider != null)
 			{
-				Debug.Log(Time.time + " hit something");
+				//Debug.Log(Time.time + " hit something");
 				hitSomething = true;
 			}
 		}
