@@ -3,14 +3,15 @@ using System.Collections;
 
 public class CameraZoomer : MonoBehaviour {
 
-    private float minSize;
-
+    public float minSize;
+    public float startingSize;
     public float maxSize;
     public float zoomSpeed = 1f;
 
 	// Use this for initialization
 	void Start () {
-        minSize = Camera.main.orthographicSize;
+        //minSize = Camera.main.orthographicSize;
+        Camera.main.orthographicSize = startingSize;
 	}
 	
 	// Update is called once per frame
@@ -18,10 +19,11 @@ public class CameraZoomer : MonoBehaviour {
         float currSize = Camera.main.orthographicSize;
         float delta = Input.GetAxis("Mouse ScrollWheel");
 
-//        Debug.Log("delta: " + delta);
+        //Debug.Log("delta: " + delta);
 
-        float newSize = Mathf.Clamp(currSize + delta * -zoomSpeed, minSize, maxSize);
-
-        Camera.main.orthographicSize = newSize;
+        if(delta != 0) {
+            float newSize = Mathf.Clamp(currSize + delta * -zoomSpeed, minSize, maxSize);
+            Camera.main.orthographicSize = newSize;
+        }
 	}
 }

@@ -22,10 +22,15 @@ public class CityGrowth : MonoBehaviour
 	private float shakeTime;
 	private Vector2 origPos;
 	private List<GameObject> tileObjs;
-	private float scaleTarget;
+	public float scaleTarget = 1; //multiplier for existing building scale
 
 	void Awake()
 	{
+        if(scaleTarget == 0) {
+            Debug.LogError("CityGrowth scale == 0");
+        }
+        Vector3 s = transform.localScale;
+        transform.localScale = new Vector3(s.x * scaleTarget, s.y * scaleTarget, 1);
 		origPos = transform.localPosition;
 		tileMap = new int[maxTileSize, maxTileSize];
 		tileMap [maxTileSize / 2, maxTileSize / 2] = 1;
@@ -33,6 +38,8 @@ public class CityGrowth : MonoBehaviour
 		LoadResources ();
 		tileWidth = tileObjs [0].GetComponent<SpriteRenderer> ().bounds.size.x;
 		tileHeight = tileWidth / 2;
+        tileWidth *= scaleTarget;
+        tileHeight *= scaleTarget;
 		originXTilePos = transform.position.x - maxTileSize / 2 * tileWidth;
 		originYTilePos = transform.position.y;
 
@@ -127,6 +134,8 @@ public class CityGrowth : MonoBehaviour
 						if (skipAnimation) {
 							newTile.GetComponent<BaseTile> ().SkipAnimation ();
 						}
+                        Vector3 s = newTile.transform.localScale;
+                        newTile.transform.localScale = new Vector3(s.x * scaleTarget, s.y * scaleTarget, 1);
 						newTile.transform.parent = this.gameObject.transform;
 						newTile.GetComponent<SpriteRenderer> ().sortingLayerName = "Bldg" + (x + 1);
 						newTile.GetComponent<SpriteRenderer> ().sortingOrder = maxTileSize - y;
