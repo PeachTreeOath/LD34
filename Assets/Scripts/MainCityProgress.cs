@@ -25,27 +25,31 @@ public class MainCityProgress : MonoBehaviour {
 
 	void UpdateProgress()
 	{
-		if(Globals.gameState.money >= LevelUpSchedule.schedule[Application.loadedLevel, Globals.gameState.cityProgress])
+		if(Globals.gameState.money >= LevelUpSchedule.schedule[Application.loadedLevel, Globals.gameState.cityProgress]) {
+            doLevelUp();
+        }
+	}
+
+    //This is only public so the debug panel can invoke it
+    public void doLevelUp() {
+		//Debug.Log ("PROGRESS");
+		Globals.gameState.cityProgress++;
+		cityGrowth.LevelUp (5, false);
+		if(Globals.gameState.cityProgress == Globals.cityTierCount)
 		{
-			//Debug.Log ("PROGRESS");
-			Globals.gameState.cityProgress++;
-			cityGrowth.LevelUp (5, false);
-			if(Globals.gameState.cityProgress == Globals.cityTierCount)
+			Destroy(this);
+			int schedSize = LevelUpSchedule.schedule.GetLength(0);
+			int lCount = Application.levelCount - 1;
+			if(Application.loadedLevel < Mathf.Min(lCount, schedSize))
 			{
-				Destroy(this);
-				int schedSize = LevelUpSchedule.schedule.GetLength(0);
-				int lCount = Application.levelCount - 1;
-				if(Application.loadedLevel < Mathf.Min(lCount, schedSize))
-				{
-					Camera.main.gameObject.AddComponent<LoadNextLevel>().shrinkSpeed = 1;
-				}else if (!Globals.gameState.win)
-				{
-					Globals.gameState.win = true;
-					Camera.main.gameObject.AddComponent<VictoryDisplayer>();
-				}
+				Camera.main.gameObject.AddComponent<LoadNextLevel>().shrinkSpeed = 1;
+			}else if (!Globals.gameState.win)
+			{
+				Globals.gameState.win = true;
+				Camera.main.gameObject.AddComponent<VictoryDisplayer>();
 			}
 		}
-	}
+    }
 
 	void UpdateProgressUI()
 	{

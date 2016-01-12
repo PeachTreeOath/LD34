@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingCityLevel: 2
-  scaleTarget: 1.5
+  scaleTarget: 1.25
 --- !u!212 &21275370
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -120,6 +120,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Size.y
       value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: scaleTarget
+      value: 1.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
